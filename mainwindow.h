@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <Qfile>
+#include <QTextStream>
+#include <QStringList>
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +19,14 @@ public:
     ~MainWindow();
 
 private slots:
+
+    void on_closeBtn_clicked();
+
+    void on_reloadBtn_clicked();
+
+    void on_saveBtn_clicked();
+
+    void on_loadBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
