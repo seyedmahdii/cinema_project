@@ -50,10 +50,12 @@ void MainWindow::on_submit_btn_clicked()
     QString email = this->ui->email_input->text();
 
     if(username!="" && password!="" && email!=""){
-        qts << "username: " + username + "\t" + "password: " + password + "\t" + "email: " + email + "\n";
+        qts << username + " " + password + " " + email + "\n";
     }
     else{
-        QMessageBox::warning(this, "خطا", "فیلد ها را تکمیل نمایید.");
+        QString title = "خطا";
+        QString message ="فیلد ها را تکمیل نمایید";
+        QMessageBox::warning(this, title, message);
     }
     file.close();
 }

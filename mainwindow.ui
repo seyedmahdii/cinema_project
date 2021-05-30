@@ -17,15 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Cinema</string>
+   <string>عضویت در سینما</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#MainWindow{
 	background-color: red;
-    display: grid;
-    place-items: center;
-    width: 100%;
-    min-height: 100vh;
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -43,10 +39,6 @@
    <property name="styleSheet">
     <string notr="true">#centralWidget{
 	background-color: #f2f2f2;
-    display: grid;
-    place-items: center;
-    width: 100%;
-    min-height: 100vh;
 }
 #section_center{
     background-color: white;
@@ -90,6 +82,10 @@ qlineargradient
                 stop:1 #182848, stop: 0.2 #4b6cb7, stop:1 #182848);
 	border-radius: 10px;
 	color: white;
+}
+#submit_btn:hover{
+	background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:1 #4b6cb7, stop: 0.2 #182848, stop:1 #4b6cb7);
 }
 
 #footer_span{
@@ -162,29 +158,27 @@ qlineargradient
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="title">
-              <property name="minimumSize">
-               <size>
-                <width>135</width>
-                <height>0</height>
-               </size>
+             <layout class="QVBoxLayout" name="title_wrapper">
+              <property name="rightMargin">
+               <number>0</number>
               </property>
-              <property name="font">
-               <font>
-                <family>B Yekan</family>
-                <pointsize>36</pointsize>
-               </font>
-              </property>
-              <property name="mouseTracking">
-               <bool>false</bool>
-              </property>
-              <property name="layoutDirection">
-               <enum>Qt::RightToLeft</enum>
-              </property>
-              <property name="text">
-               <string>عضویت</string>
-              </property>
-             </widget>
+              <item>
+               <widget class="QLabel" name="title">
+                <property name="font">
+                 <font>
+                  <family>B Yekan</family>
+                  <pointsize>28</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="text">
+                 <string>عضویت در سامانه</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <spacer name="horizontalSpacer">
@@ -253,8 +247,8 @@ qlineargradient
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>95</width>
-                  <height>95</height>
+                  <width>100</width>
+                  <height>100</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -265,6 +259,9 @@ qlineargradient
                 </property>
                 <property name="pixmap">
                  <pixmap resource="Resources.qrc">:/images/user2.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -418,14 +415,32 @@ qlineargradient
            <item>
             <widget class="QWidget" name="btn_wrapper" native="true">
              <layout class="QHBoxLayout" name="_2">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
               <property name="topMargin">
                <number>20</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
               </property>
               <property name="bottomMargin">
                <number>20</number>
               </property>
               <item alignment="Qt::AlignVCenter">
                <widget class="QPushButton" name="submit_btn">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="font">
                  <font>
                   <family>B Yekan</family>
@@ -434,6 +449,9 @@ qlineargradient
                 </property>
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>ثبت نام</string>
@@ -496,6 +514,9 @@ qlineargradient
                </property>
                <property name="text">
                 <string>وارد شوید.</string>
+               </property>
+               <property name="default">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
