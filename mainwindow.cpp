@@ -15,30 +15,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-//void MainWindow::on_closeBtn_clicked()
-//{
-//    this->close();
-//}
-
-//void MainWindow::on_reloadBtn_clicked()
-//{
-//    this->ui->unInput->clear();
-//    this->ui->pwInput->clear();
-//}
-
-//void MainWindow::on_loadBtn_clicked()
-//{
-//    QFile file(user_pass);
-//    file.open(QFile::Text | QFile::ReadOnly);
-//    QTextStream qts(&file);
-//    while(!qts.atEnd()){
-//        QStringList qsl = qts.readLine().split(":");
-//        this->ui->result->append(qsl[0] + qsl[1]);
-//    }
-//    file.close();
-//}
-
 void MainWindow::on_submit_btn_clicked()
 {
     QFile file("users.txt");
@@ -62,6 +38,6 @@ void MainWindow::on_submit_btn_clicked()
 
 void MainWindow::on_footer_log_btn_clicked()
 {
-    loginPage.show();
-    this->hide();
+    loginPage.showMaximized();
+    this->close();
 }

@@ -6,5 +6,14 @@
         <file>images/eye-icon.png</file>
         <file>images/user2.png</file>
         <file>images/lock.png</file>
+        <file>images/army-of-dead.jpg</file>
+        <file>images/fightclub.jpg</file>
+        <file>images/friends-reunion.jpg</file>
+        <file>images/god-father.jpg</file>
+        <file>images/mortal-kombat.jpg</file>
+        <file>images/spiderman.jpg</file>
+        <file>images/the-unholy.jpg</file>
+        <file>images/wrath-of-man.jpg</file>
+        <file>images/search-icon.png</file>
     </qresource>
 </RCC>
