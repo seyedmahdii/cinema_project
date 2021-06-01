@@ -8,8 +8,6 @@ Home::Home(QWidget *parent) :
     ui(new Ui::Home)
 {
     ui->setupUi(this);
-
-//    this->ui->loged_user_label->setText("aaaa");
 }
 
 Home::~Home()
@@ -17,6 +15,7 @@ Home::~Home()
     delete ui;
 }
 
+// **************** Signal ****************
 void Home::usernameSlot(QString &text)
 {
     this->ui->loged_user_label->setText(text);

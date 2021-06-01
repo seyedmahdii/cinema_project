@@ -18,6 +18,7 @@ public:
 private:
     Ui::Home *ui;
 
+// **************** Slot ****************
 public slots:
     void usernameSlot(QString &text);
 };

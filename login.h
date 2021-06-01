@@ -22,6 +22,7 @@ private slots:
 
     void on_footer_sign_btn_clicked();
 
+    // **************** Signal ****************
     signals:
         void submitSignal(QString &text);
 
