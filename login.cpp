@@ -4,16 +4,14 @@
 #include "mainwindow.h"
 #include <QMessageBox>
 
-Login::Login(QWidget *parent) :
+Login::Login(QWidget *parent, QMainWindow * registerPage) :
     QWidget(parent),
     ui(new Ui::Login)
 {
     ui->setupUi(this);
+    this->registerPage = registerPage;
 
-    // **************** Connecting ****************
-    Home home;
-    QWidget::connect(this, SIGNAL(submitSignal(QString&)),
-                          &home, SLOT(usernameSlot(QString&)));
+    homePage = new Home();
 }
 
 Login::~Login()
@@ -37,10 +35,11 @@ void Login::on_submit_btn_clicked()
                 QString message = "خوش اومدی.";
                 QMessageBox::information(this, title, qsl[0] + message);
 
-                // **************** Emiting signal ****************
-                emit this->submitSignal(username);
+//                *****************************************************************
+                logedUserData["username"] = username;
+                logedUserData["password"] = password;
 
-                homePage.showMaximized();
+                homePage->showMaximized();
                 this->close();
             }
         }
@@ -55,7 +54,6 @@ void Login::on_submit_btn_clicked()
 
 void Login::on_footer_sign_btn_clicked()
 {
-    MainWindow mainWindowPage;
-    mainWindowPage.showMaximized();
+    registerPage->showMaximized();
     this->close();
 }

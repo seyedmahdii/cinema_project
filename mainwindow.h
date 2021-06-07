@@ -28,7 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Login loginPage;
+    Login * loginPage;
 };
 
 #endif // MAINWINDOW_H

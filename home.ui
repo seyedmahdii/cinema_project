@@ -48,21 +48,7 @@
     <item>
      <widget class="QScrollArea" name="scrollArea">
       <property name="styleSheet">
-       <string notr="true">
-#main, #scrollArea{
-	background-color: #111;
-}
-#hero{
-	background: url(:/images/spiderman.jpg) center/cover no-repeat;
-    background-attachment: fixed;
-}
-
-#hero_title_wrapper{
-    background-color: #111;
-}
-#hero_title{
-	color: white;
-}</string>
+       <string notr="true"/>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -73,12 +59,12 @@
          <x>0</x>
          <y>0</y>
          <width>800</width>
-         <height>1124</height>
+         <height>618</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QFrame" name="hero">
+         <widget class="QFrame" name="top">
           <property name="minimumSize">
            <size>
             <width>750</width>
@@ -119,8 +105,7 @@
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgba(20,20,20,.4);
-color: white;</string>
+              <string notr="true"/>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <property name="leftMargin">
@@ -149,6 +134,38 @@ color: white;</string>
                 <property name="bottomMargin">
                  <number>10</number>
                 </property>
+                <item>
+                 <layout class="QHBoxLayout" name="addMovie_wrapper">
+                  <property name="leftMargin">
+                   <number>10</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>10</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="add_btn">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>B Yekan</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>فیلم جدید</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
                 <item>
                  <layout class="QHBoxLayout" name="loged_user_wrapper">
                   <property name="leftMargin">
@@ -246,24 +263,21 @@ color: white;</string>
             </widget>
            </item>
            <item>
-            <layout class="QVBoxLayout" name="hero_title_wrapper">
-             <property name="topMargin">
-              <number>20</number>
+            <widget class="QScrollArea" name="scrollArea_2">
+             <property name="widgetResizable">
+              <bool>true</bool>
              </property>
-             <item>
-              <widget class="QLabel" name="hero_title">
-               <property name="font">
-                <font>
-                 <family>B Yekan</family>
-                 <pointsize>48</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>مرد عنکبوتی ۲</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+             <widget class="QWidget" name="scrollAreaWidgetContents_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>778</width>
+                <height>249</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
            </item>
            <item>
             <spacer name="verticalSpacer">
@@ -279,27 +293,6 @@ color: white;</string>
             </spacer>
            </item>
           </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QFrame" name="frame">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>500</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-	background-color: lightblue;
-</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
          </widget>
         </item>
        </layout>

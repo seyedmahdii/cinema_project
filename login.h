@@ -3,7 +3,10 @@
 
 #include <QWidget>
 
+#include "QMainWindow"
+
 #include "home.h"
+#include "data.h"
 
 namespace Ui {
 class Login;
@@ -14,7 +17,7 @@ class Login : public QWidget
     Q_OBJECT
 
 public:
-    explicit Login(QWidget *parent = nullptr);
+    explicit Login(QWidget *parent = nullptr, QMainWindow * registerPage = nullptr);
     ~Login();
 
 private slots:
@@ -22,13 +25,11 @@ private slots:
 
     void on_footer_sign_btn_clicked();
 
-    // **************** Signal ****************
-    signals:
-        void submitSignal(QString &text);
-
 private:
     Ui::Login *ui;
-    Home homePage;
+    QMainWindow * registerPage;
+
+    Home * homePage;
 };
 
 #endif // LOGIN_H

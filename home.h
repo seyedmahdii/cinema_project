@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+#include "data.h"
+#include "newmovie.h"
+
 namespace Ui {
 class Home;
 }
@@ -15,12 +18,14 @@ public:
     explicit Home(QWidget *parent = nullptr);
     ~Home();
 
+private slots:
+
+    void on_add_btn_clicked();
+
 private:
     Ui::Home *ui;
 
-// **************** Slot ****************
-public slots:
-    void usernameSlot(QString &text);
+    NewMovie * newMoviePage;
 };
 
 #endif // HOME_H

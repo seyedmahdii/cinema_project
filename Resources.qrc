@@ -15,5 +15,10 @@
         <file>images/the-unholy.jpg</file>
         <file>images/wrath-of-man.jpg</file>
         <file>images/search-icon.png</file>
+        <file>images/comedy-icon.png</file>
+        <file>images/detective-icon.png</file>
+        <file>images/documentary-icon.png</file>
+        <file>images/theatre-mask-icon.png</file>
+        <file>images/iron-man-icon.png</file>
     </qresource>
 </RCC>

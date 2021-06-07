@@ -26,15 +26,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     login.cpp \
-    home.cpp
+    home.cpp \
+    data.cpp \
+    newmovie.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
-    home.h
+    home.h \
+    data.h \
+    newmovie.h
 
 FORMS    += mainwindow.ui \
     login.ui \
-    home.ui
+    home.ui \
+    newmovie.ui
 
 RESOURCES += \
     Resources.qrc

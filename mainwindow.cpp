@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    loginPage = new Login(nullptr, this);
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +39,6 @@ void MainWindow::on_submit_btn_clicked()
 
 void MainWindow::on_footer_log_btn_clicked()
 {
-    loginPage.showMaximized();
+    loginPage->showMaximized();
     this->close();
 }

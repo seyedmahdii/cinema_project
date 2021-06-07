@@ -3,11 +3,26 @@
 
 #include "mainwindow.h"
 
+#include "QMessageBox"
+
 Home::Home(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Home)
 {
     ui->setupUi(this);
+
+    newMoviePage = new NewMovie();
+
+    QString t = logedUserData["username"];
+
+    ui->loged_user_label->setText(t);
+
+    if(t == "admin"){
+        ui->add_btn->setEnabled(true);
+    }/*
+    else{
+        ui->add_btn->setEnabled(false);
+    }*/
 }
 
 Home::~Home()
@@ -15,8 +30,8 @@ Home::~Home()
     delete ui;
 }
 
-// **************** Signal ****************
-void Home::usernameSlot(QString &text)
+void Home::on_add_btn_clicked()
 {
-    this->ui->loged_user_label->setText(text);
+    newMoviePage->showMaximized();
+    this->close();
 }
