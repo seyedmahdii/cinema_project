@@ -20,5 +20,8 @@
         <file>images/documentary-icon.png</file>
         <file>images/theatre-mask-icon.png</file>
         <file>images/iron-man-icon.png</file>
+        <file>images/logo.svg</file>
+        <file>images/Logo.png</file>
+        <file>images/Logo_color.png</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     loginPage = new Login(nullptr, this);
+    homePage = new Home(nullptr, this);
 }
 
 MainWindow::~MainWindow()
@@ -28,6 +29,13 @@ void MainWindow::on_submit_btn_clicked()
 
     if(username!="" && password!="" && email!=""){
         qts << username + " " + password + " " + email + "\n";
+
+        QString title = "اومدی داخل";
+        QString message = "خوش اومدی.";
+        QMessageBox::information(this, title, username + message);
+
+        homePage->showMaximized();
+        this->close();
     }
     else{
         QString title = "خطا";

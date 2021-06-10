@@ -3,11 +3,12 @@
 
 #include <QMessageBox>
 
-NewMovie::NewMovie(QWidget *parent) :
+NewMovie::NewMovie(QWidget *parent, QMainWindow * mainWindowPage) :
     QMainWindow(parent),
     ui(new Ui::NewMovie)
 {
     ui->setupUi(this);
+    this->mainWindowPage = mainWindowPage;
 }
 
 NewMovie::~NewMovie()
@@ -28,8 +29,15 @@ void NewMovie::on_submit_btn_clicked()
     QString desc = ui->desc_input->toPlainText();
     int tickets = ui->ticket_input->value();
 
-    if(name != "" && director != "" && desc != ""){
+    if(name != "" && director != "" && desc != "" && cast != ""){
         qts << name << "\n" << director << "\n" << cast << "\n" << genre << "\n" << desc << "\n" << tickets << "\n";
+
+        QString title = "اضافه کردن فیلم جدید";
+        QString message = "فیلم جدید با موفقیت اضافه شد";
+        QMessageBox::information(this, title, message);
+
+        mainWindowPage->showMaximized();
+        this->close();
     }
     else{
         QString title = "خطا";

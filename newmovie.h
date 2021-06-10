@@ -16,7 +16,7 @@ class NewMovie : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit NewMovie(QWidget *parent = nullptr);
+    explicit NewMovie(QWidget *parent = nullptr, QMainWindow * mainWindowPage = nullptr);
     ~NewMovie();
 
 private slots:
@@ -24,6 +24,8 @@ private slots:
 
 private:
     Ui::NewMovie *ui;
+
+    QMainWindow * mainWindowPage;
 };
 
 #endif // NEWMOVIE_H

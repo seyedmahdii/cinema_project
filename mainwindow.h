@@ -8,6 +8,8 @@
 #include <QStringList>
 
 #include "login.h"
+#include "data.h"
+//#include "home.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +31,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Login * loginPage;
+    Home * homePage;
 };
 
 #endif // MAINWINDOW_H

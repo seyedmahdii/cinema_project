@@ -16,6 +16,10 @@
   <property name="styleSheet">
    <string notr="true">#NewMovie{
 	background-color: #f2f2f2;
+	border: none;
+}
+#centralwidget{
+	border: none;
 }
 #section_center{
     background-color: white;
@@ -81,6 +85,18 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QScrollArea" name="scrollArea">
       <property name="styleSheet">
@@ -93,8 +109,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-238</y>
-         <width>763</width>
+         <y>0</y>
+         <width>781</width>
          <height>818</height>
         </rect>
        </property>
