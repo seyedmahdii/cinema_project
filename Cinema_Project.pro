@@ -28,18 +28,21 @@ SOURCES += main.cpp\
     login.cpp \
     home.cpp \
     data.cpp \
-    newmovie.cpp
+    newmovie.cpp \
+    editmovie.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
     home.h \
     data.h \
-    newmovie.h
+    newmovie.h \
+    editmovie.h
 
 FORMS    += mainwindow.ui \
     login.ui \
     home.ui \
-    newmovie.ui
+    newmovie.ui \
+    editmovie.ui
 
 RESOURCES += \
     Resources.qrc

@@ -2,7 +2,6 @@
 #include "ui_home.h"
 
 #include "QMessageBox"
-#include <QCheckBox>
 
 Home::Home(QWidget *parent, QMainWindow * mainWindowPage) :
     QMainWindow(parent),
@@ -12,14 +11,15 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage) :
 
     this->mainWindowPage = mainWindowPage;
     newMoviePage = new NewMovie(nullptr, this);
+//    editMoviePage = new EditMovie(nullptr, nullptr);
 
-    QString t = logedUserData["username"];
 
-    ui->loged_user_label->setText(t);
+//    QString t = logedUserData["username"];
+    /*ui->loged_user_label->setText(t);
 
     if(t == "admin"){
         ui->add_btn->setEnabled(true);
-    }/*
+    }*//*
     else{
         ui->add_btn->setEnabled(false);
     }*/
@@ -29,40 +29,41 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage) :
     QFile moviesFile("movies.txt");
     moviesFile.open(QFile::Text | QFile::ReadOnly);
     QTextStream qts(& moviesFile);
-    int i = 0;
+    int movieIndex = 0;
     QVector<QMap<QString, QString>> movies;
     QMap<QString, QString> tMap;
 
     while(!qts.atEnd()){
         QString line = qts.readLine();
-        if(i %6 == 0){
+        if(movieIndex %6 == 0){
             tMap.insert("name", line);
         }
-        else if(i %6 == 1){
+        else if(movieIndex %6 == 1){
             tMap.insert("director", line);
         }
-        else if(i %6 == 2){
+        else if(movieIndex %6 == 2){
             tMap.insert("cast", line);
         }
-        else if(i %6 == 3){
+        else if(movieIndex %6 == 3){
             tMap.insert("genre", line);
         }
-        else if(i %6 == 4){
+        else if(movieIndex %6 == 4){
             tMap.insert("desc", line);
         }
-        else if(i %6 == 5){
+        else if(movieIndex %6 == 5){
             tMap.insert("tickets", line);
             movies.push_back(tMap);
         }
-        i++;
+        movieIndex++;
     }
     moviesFile.close();
 
 
-    QObject::connect(
-                this->ui->addWidget, &QPushButton::clicked,
-                this, &Home::onAddMovie
-                );
+    for(int i=0; i<movies.length(); i++){
+        addMovie(movies[i]);
+    }
+
+    movies_copy = movies;
 }
 
 Home::~Home()
@@ -76,32 +77,67 @@ void Home::on_add_btn_clicked()
     this->close();
 }
 
-void Home::onAddMovie(){
-      QHBoxLayout * layout = qobject_cast<QHBoxLayout *>(ui->my_frame->layout());
+void Home::addMovie(QMap<QString, QString> singleMovie){
+    QVBoxLayout * upcomingLayouts_Container = qobject_cast<QVBoxLayout *>(ui->movies_container->layout());
 
-      QVBoxLayout * newLoayout = new QVBoxLayout(ui->my_frame);
+    QVBoxLayout * newMoviesLoayout = new QVBoxLayout(ui->movies_container);
 
-      QString buttonText = tr("Button: #%1").arg(layout->count());
-      QPushButton * button = new QPushButton(buttonText, ui->my_frame);
+    QPushButton * deleteBtn = new QPushButton("Delete");
+    newMoviesLoayout->addWidget(deleteBtn);
 
-      newLoayout->addWidget(button);
+    QPushButton * editBtn = new QPushButton("Edit");
+    newMoviesLoayout->addWidget(editBtn);
 
-      QCheckBox * checkBox = new QCheckBox("Check me!", ui->my_frame);
-      newLoayout->addWidget(checkBox);
+    QSpinBox * ticketInput = new QSpinBox();
+    ticketInput->setMinimum(1);
+    newMoviesLoayout->addWidget(ticketInput);
 
-      layout->insertLayout(0, newLoayout);
+    QLabel * movieLabel = new QLabel(singleMovie["name"]);
+    newMoviesLoayout->addWidget(movieLabel);
 
-      mButtonToLayoutMap.insert(button, newLoayout);
+    QLabel * directorLabel = new QLabel(singleMovie["director"]);
+    newMoviesLoayout->addWidget(directorLabel);
 
-      QObject::connect(
-             button, &QPushButton::clicked,
-             this, &Home::onRemoveMovie
-                 );
+    QLabel * castLabel = new QLabel(singleMovie["cast"]);
+    newMoviesLoayout->addWidget(castLabel);
+
+    QLabel * genreLabel = new QLabel(singleMovie["genre"]);
+    newMoviesLoayout->addWidget(genreLabel);
+
+    QLabel * descLabel = new QLabel(singleMovie["desc"]);
+    newMoviesLoayout->addWidget(descLabel);
+
+    QLabel * ticketsLabel = new QLabel(singleMovie["tickets"]);
+    newMoviesLoayout->addWidget(ticketsLabel);
+
+    upcomingLayouts_Container->insertLayout(1, newMoviesLoayout);
+
+    mButtonToLayoutMap.insert(deleteBtn, newMoviesLoayout);
+    mButtonToMovieMap.insert(deleteBtn, singleMovie["name"]);
+
+    QObject::connect(
+                deleteBtn, &QPushButton::clicked,
+                this, &Home::onRemoveMovie
+                );
+
+    QObject::connect(
+                editBtn, &QPushButton::clicked,
+                this, &Home::showEditMoviePage
+                );
+
 }
 
 void Home::onRemoveMovie(){
     QPushButton * button = qobject_cast<QPushButton * >(sender());
     QVBoxLayout * layout = mButtonToLayoutMap.take(button);
+    QString movieName = mButtonToMovieMap.take(button);
+
+    for(int i=0; i<movies_copy.size(); i++){
+        if(movies_copy[i]["name"] == movieName){
+            movies_copy.remove(i);
+            break;
+        }
+    }
 
     while(layout->count() != 0){
         QLayoutItem * item = layout->takeAt(0);
@@ -111,19 +147,24 @@ void Home::onRemoveMovie(){
     delete layout;
 }
 
-//void Home::closeEvent(){
-//    // Updating movies file
-//    QFile moviesFile("movies.txt");
-//    moviesFile.open(QFile::ReadWrite | QFile::Truncate | QFile::Text);
-//    QTextStream qtss(&moviesFile);
+void Home::closeEvent(QCloseEvent *ev){
+    QMainWindow::closeEvent(ev);
 
-//    movies[0]["name"] = "friends";
+//     Updating movies file
+    QFile moviesFile("movies.txt");
+    moviesFile.open(QFile::Append | QFile::Truncate | QFile::Text);
+    QTextStream qts(&moviesFile);
 
-//    for(int i=0; i<movies.length(); i++){
-//        qtss << movies[i]["name"] << "\n" << movies[i]["director"] << "\n"
-//                                 << movies[i]["cast"] << "\n" << movies[i]["genre"]
-//                                 << "\n" << movies[i]["desc"] << "\n" << movies[i]["tickets"]
-//                                 << "\n";
-//    }
-//    moviesFile.close();
-//}
+    for(int i=0; i<movies_copy.length(); i++){
+        qts << movies_copy[i]["name"] << "\n" << movies_copy[i]["director"] << "\n"
+                                 << movies_copy[i]["cast"] << "\n" << movies_copy[i]["genre"]
+                                 << "\n" << movies_copy[i]["desc"] << "\n" << movies_copy[i]["tickets"]
+                                 << "\n";
+    }
+    moviesFile.close();
+}
+
+void Home::showEditMoviePage(){
+    editMoviePage->showMaximized();
+    this->close();
+}

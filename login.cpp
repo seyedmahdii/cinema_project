@@ -35,8 +35,8 @@ void Login::on_submit_btn_clicked()
                 QString message = "خوش اومدی.";
                 QMessageBox::information(this, title, qsl[0] + message);
 
-                logedUserData["username"] = username;
-                logedUserData["password"] = password;
+//                logedUserData["username"] = username;
+//                logedUserData["password"] = password;
 
                 homePage->showMaximized();
                 this->close();

@@ -35,7 +35,7 @@ void NewMovie::on_submit_btn_clicked()
         QString title = "اضافه کردن فیلم جدید";
         QString message = "فیلم جدید با موفقیت اضافه شد";
         QMessageBox::information(this, title, message);
-
+        file.close();
         mainWindowPage->showMaximized();
         this->close();
     }
@@ -44,5 +44,4 @@ void NewMovie::on_submit_btn_clicked()
         QString message ="فیلد ها را تکمیل نمایید";
         QMessageBox::warning(this, title, message);
     }
-    file.close();
 }

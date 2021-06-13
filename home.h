@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
-#include "data.h"
 #include "newmovie.h"
+#include "editmovie.h"
 
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -12,6 +12,8 @@
 #include <QFile>
 #include <QTextStream>
 #include <QStringList>
+
+#include <QSpinBox>
 
 namespace Ui {
 class Home;
@@ -24,24 +26,29 @@ class Home : public QMainWindow
 public:
     explicit Home(QWidget *parent = nullptr, QMainWindow * mainWindowPage = nullptr);
     ~Home();
-//    explicit QCloseEvent();
-    void closeEvent();
 
-    void onAddMovie();
+    void addMovie(QMap<QString, QString> singleMovie);
 
     void onRemoveMovie();
 
-private slots:
+    void closeEvent(QCloseEvent *ev);
+    void showEditMoviePage();
 
+private slots:
     void on_add_btn_clicked();
 
 private:
     Ui::Home *ui;
 
     NewMovie * newMoviePage;
+    EditMovie * editMoviePage;
     QMainWindow * mainWindowPage;
 
     QHash<QPushButton *, QVBoxLayout *> mButtonToLayoutMap;
+    QHash<QPushButton *, QString> mButtonToMovieMap;
+
+    QVector<QMap<QString, QString>> movies;
+    QVector<QMap<QString, QString>> movies_copy;
 };
 
 #endif // HOME_H

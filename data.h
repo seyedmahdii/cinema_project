@@ -5,8 +5,8 @@
 #include <QMap>
 #include <QVector>
 
-extern QMap<QString, QString> logedUserData;
+//extern QMap<QString, QString> logedUserData;
 
-extern QVector<QMap<QString, QString>> movies;
+//extern QVector<QMap<QString, QString>> movies;
 
 #endif // DATA_H

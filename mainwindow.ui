@@ -20,7 +20,7 @@
    <string>عضویت در سینما</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="Resources.qrc">
     <normaloff>:/images/Logo_color.png</normaloff>:/images/Logo_color.png</iconset>
   </property>
   <property name="styleSheet">
@@ -262,7 +262,7 @@ qlineargradient
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap>:/images/user2.png</pixmap>
+                 <pixmap resource="Resources.qrc">:/images/user2.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>false</bool>
@@ -576,6 +576,8 @@ qlineargradient
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

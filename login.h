@@ -6,7 +6,6 @@
 #include "QMainWindow"
 
 #include "home.h"
-#include "data.h"
 
 namespace Ui {
 class Login;

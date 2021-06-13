@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>NewMovie</class>
- <widget class="QMainWindow" name="NewMovie">
+ <class>EditMovie</class>
+ <widget class="QMainWindow" name="EditMovie">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>فیلم جدید</string>
+   <string>ادیت فیلم اسم فیلم اینجا</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#NewMovie{
+   <string notr="true">#EditMovie{
 	background-color: #f2f2f2;
 	border: none;
 }
@@ -84,7 +84,7 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -99,9 +99,6 @@
     </property>
     <item>
      <widget class="QScrollArea" name="scrollArea">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
@@ -109,17 +106,17 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-271</y>
          <width>781</width>
-         <height>829</height>
+         <height>869</height>
         </rect>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <property name="bottomMargin">
          <number>20</number>
         </property>
         <item>
-         <spacer name="horizontalSpacer">
+         <spacer name="horizontalSpacer_2">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -136,11 +133,8 @@
           <property name="minimumSize">
            <size>
             <width>450</width>
-            <height>800</height>
+            <height>840</height>
            </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -150,84 +144,91 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <layout class="QHBoxLayout" name="header">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>25</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>9</number>
-             </property>
-             <item>
-              <layout class="QHBoxLayout" name="header_wrapper">
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-               <item>
-                <spacer name="horizontalSpacer_4">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+            <widget class="QWidget" name="header" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>25</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>9</number>
+              </property>
+              <item>
+               <widget class="QWidget" name="header_wrapper" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <property name="leftMargin">
+                  <number>0</number>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
+                 <property name="topMargin">
+                  <number>0</number>
                  </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QLabel" name="title">
-                 <property name="font">
-                  <font>
-                   <family>B Yekan</family>
-                   <pointsize>28</pointsize>
-                  </font>
+                 <property name="rightMargin">
+                  <number>0</number>
                  </property>
-                 <property name="text">
-                  <string>فیلم جدید</string>
+                 <property name="bottomMargin">
+                  <number>0</number>
                  </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
+                 <item>
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="title">
+                   <property name="font">
+                    <font>
+                     <family>B Yekan</family>
+                     <pointsize>28</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>ویرایش فیلم اسم فیلم</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
            <item>
             <widget class="QWidget" name="icon_box" native="true">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <layout class="QHBoxLayout" name="_3">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <property name="leftMargin">
+               <number>9</number>
+              </property>
               <property name="topMargin">
                <number>20</number>
+              </property>
+              <property name="rightMargin">
+               <number>9</number>
               </property>
               <property name="bottomMargin">
                <number>20</number>
@@ -246,7 +247,7 @@
                   <height>100</height>
                  </size>
                 </property>
-                <layout class="QHBoxLayout" name="_2">
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
                  <property name="leftMargin">
                   <number>0</number>
                  </property>
@@ -296,6 +297,9 @@
            <item>
             <widget class="QWidget" name="form" native="true">
              <layout class="QVBoxLayout" name="verticalLayout_2">
+              <property name="leftMargin">
+               <number>9</number>
+              </property>
               <property name="topMargin">
                <number>20</number>
               </property>
@@ -307,7 +311,7 @@
               </property>
               <item>
                <widget class="QWidget" name="name_wrapper" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
                  <property name="leftMargin">
                   <number>9</number>
                  </property>
@@ -353,10 +357,19 @@
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="director_wrapper" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <widget class="QWidget" name="direcotr_wrapper" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
                  <property name="topMargin">
                   <number>20</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QLineEdit" name="director_input">
@@ -372,9 +385,6 @@
                      <pointsize>14</pointsize>
                     </font>
                    </property>
-                   <property name="styleSheet">
-                    <string notr="true"/>
-                   </property>
                   </widget>
                  </item>
                  <item>
@@ -384,9 +394,6 @@
                      <family>B Yekan</family>
                      <pointsize>14</pointsize>
                     </font>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string>کارگردان</string>
@@ -445,9 +452,18 @@
               </item>
               <item>
                <widget class="QWidget" name="genre_wrapper" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
                  <property name="topMargin">
                   <number>20</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QComboBox" name="genre_input">
@@ -465,9 +481,6 @@
                    </property>
                    <property name="layoutDirection">
                     <enum>Qt::RightToLeft</enum>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true"/>
                    </property>
                    <item>
                     <property name="text">
@@ -519,9 +532,6 @@
                      <pointsize>14</pointsize>
                     </font>
                    </property>
-                   <property name="styleSheet">
-                    <string notr="true"/>
-                   </property>
                    <property name="text">
                     <string>ژانر</string>
                    </property>
@@ -532,9 +542,18 @@
               </item>
               <item>
                <widget class="QWidget" name="desc_wrapper" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
                  <property name="topMargin">
                   <number>20</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>9</number>
                  </property>
                  <item>
                   <widget class="QTextEdit" name="desc_input">
@@ -543,18 +562,6 @@
                      <width>320</width>
                      <height>90</height>
                     </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>B Yekan</family>
-                     <pointsize>14</pointsize>
-                    </font>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true"/>
-                   </property>
-                   <property name="placeholderText">
-                    <string/>
                    </property>
                   </widget>
                  </item>
@@ -566,9 +573,6 @@
                      <pointsize>14</pointsize>
                     </font>
                    </property>
-                   <property name="styleSheet">
-                    <string notr="true"/>
-                   </property>
                    <property name="text">
                     <string>توضیحات</string>
                    </property>
@@ -579,7 +583,7 @@
               </item>
               <item>
                <widget class="QWidget" name="ticket_wrapper" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
                  <property name="leftMargin">
                   <number>9</number>
                  </property>
@@ -633,38 +637,44 @@
                 </layout>
                </widget>
               </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QWidget" name="btn_wrapper" native="true">
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
-              <property name="topMargin">
-               <number>20</number>
-              </property>
-              <property name="bottomMargin">
-               <number>20</number>
-              </property>
               <item>
-               <widget class="QPushButton" name="submit_btn">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>B Yekan</family>
-                  <pointsize>16</pointsize>
-                 </font>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string>ثبت فیلم</string>
-                </property>
+               <widget class="QWidget" name="btn_wrapper" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>20</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>20</number>
+                 </property>
+                 <item>
+                  <widget class="QPushButton" name="submit_btn">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>B Yekan</family>
+                     <pointsize>16</pointsize>
+                    </font>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="text">
+                    <string>ویرایش</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -687,7 +697,7 @@
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_2">
+         <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
