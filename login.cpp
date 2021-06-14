@@ -35,9 +35,6 @@ void Login::on_submit_btn_clicked()
                 QString message = "خوش اومدی.";
                 QMessageBox::information(this, title, qsl[0] + message);
 
-//                logedUserData["username"] = username;
-//                logedUserData["password"] = password;
-
                 homePage->showMaximized();
                 this->close();
                 break;
@@ -46,9 +43,9 @@ void Login::on_submit_btn_clicked()
         file.close();
     }
     else{
-        QString title = "خطا";
+        QString title = "خطا در ورود";
         QString message = "لطفا فیلد ها را تکمیل نمایید.";
-        QMessageBox::warning(this, title, message);
+        QMessageBox::critical(this, title, message);
     }
 }
 

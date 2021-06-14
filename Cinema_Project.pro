@@ -27,14 +27,12 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     login.cpp \
     home.cpp \
-    data.cpp \
     newmovie.cpp \
     editmovie.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
     home.h \
-    data.h \
     newmovie.h \
     editmovie.h
 

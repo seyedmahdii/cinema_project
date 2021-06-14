@@ -32,7 +32,10 @@ public:
     void onRemoveMovie();
 
     void closeEvent(QCloseEvent *ev);
+    void showEvent(QShowEvent *ev);
+
     void showEditMoviePage();
+    void onBuyTicket();
 
 private slots:
     void on_add_btn_clicked();
@@ -44,11 +47,12 @@ private:
     EditMovie * editMoviePage;
     QMainWindow * mainWindowPage;
 
-    QHash<QPushButton *, QVBoxLayout *> mButtonToLayoutMap;
-    QHash<QPushButton *, QString> mButtonToMovieMap;
+    QHash<QPushButton *, QVBoxLayout *> buttonToLayoutMap;
+    QHash<QPushButton *, QString> buttonToMovieMap;
+    QHash<QPushButton *, QString> buttonToMovieTicketMap;
+    QHash<QPushButton *, int> buttonToTicketInputMap;
 
-    QVector<QMap<QString, QString>> movies;
-    QVector<QMap<QString, QString>> movies_copy;
+    QVector<QMap<QString, QString>> * movies;
 };
 
 #endif // HOME_H

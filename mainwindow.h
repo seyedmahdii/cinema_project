@@ -8,7 +8,6 @@
 #include <QStringList>
 
 #include "login.h"
-#include "data.h"
 //#include "home.h"
 
 namespace Ui {

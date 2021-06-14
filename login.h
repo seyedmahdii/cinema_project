@@ -27,7 +27,6 @@ private slots:
 private:
     Ui::Login *ui;
     QMainWindow * registerPage;
-
     Home * homePage;
 };
 

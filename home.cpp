@@ -10,27 +10,16 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage) :
     ui->setupUi(this);
 
     this->mainWindowPage = mainWindowPage;
-    newMoviePage = new NewMovie(nullptr, this);
-//    editMoviePage = new EditMovie(nullptr, nullptr);
+//    editMoviePage = new EditMovie(nullptr, this);
 
-
-//    QString t = logedUserData["username"];
-    /*ui->loged_user_label->setText(t);
-
-    if(t == "admin"){
-        ui->add_btn->setEnabled(true);
-    }*//*
-    else{
-        ui->add_btn->setEnabled(false);
-    }*/
-
+    movies = new QVector<QMap<QString, QString>>();
+    newMoviePage = new NewMovie(nullptr, this, movies);
 
     // Reading movies from file
     QFile moviesFile("movies.txt");
     moviesFile.open(QFile::Text | QFile::ReadOnly);
     QTextStream qts(& moviesFile);
     int movieIndex = 0;
-    QVector<QMap<QString, QString>> movies;
     QMap<QString, QString> tMap;
 
     while(!qts.atEnd()){
@@ -52,18 +41,11 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage) :
         }
         else if(movieIndex %6 == 5){
             tMap.insert("tickets", line);
-            movies.push_back(tMap);
+            movies->push_back(tMap);
         }
         movieIndex++;
     }
     moviesFile.close();
-
-
-    for(int i=0; i<movies.length(); i++){
-        addMovie(movies[i]);
-    }
-
-    movies_copy = movies;
 }
 
 Home::~Home()
@@ -74,7 +56,7 @@ Home::~Home()
 void Home::on_add_btn_clicked()
 {
     newMoviePage->showMaximized();
-    this->close();
+    this->hide();
 }
 
 void Home::addMovie(QMap<QString, QString> singleMovie){
@@ -82,15 +64,26 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
 
     QVBoxLayout * newMoviesLoayout = new QVBoxLayout(ui->movies_container);
 
+    // For admins
     QPushButton * deleteBtn = new QPushButton("Delete");
     newMoviesLoayout->addWidget(deleteBtn);
 
+    // For admins
     QPushButton * editBtn = new QPushButton("Edit");
     newMoviesLoayout->addWidget(editBtn);
 
+    // Spingbox and button for buying ticket
     QSpinBox * ticketInput = new QSpinBox();
     ticketInput->setMinimum(1);
     newMoviesLoayout->addWidget(ticketInput);
+    QPushButton * ticketBtn = new QPushButton("Buy ticket");
+    if(singleMovie["tickets"].toInt() == 0){
+        ticketBtn->setEnabled(false);
+    }
+    else{
+        ticketBtn->setEnabled(true);
+    }
+    newMoviesLoayout->addWidget(ticketBtn);
 
     QLabel * movieLabel = new QLabel(singleMovie["name"]);
     newMoviesLoayout->addWidget(movieLabel);
@@ -112,8 +105,10 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
 
     upcomingLayouts_Container->insertLayout(1, newMoviesLoayout);
 
-    mButtonToLayoutMap.insert(deleteBtn, newMoviesLoayout);
-    mButtonToMovieMap.insert(deleteBtn, singleMovie["name"]);
+    buttonToLayoutMap.insert(deleteBtn, newMoviesLoayout);
+    buttonToMovieMap.insert(deleteBtn, singleMovie["name"]);
+    buttonToMovieTicketMap.insert(ticketBtn, singleMovie["name"]);
+    buttonToTicketInputMap.insert(ticketBtn, ticketInput->value());
 
     QObject::connect(
                 deleteBtn, &QPushButton::clicked,
@@ -125,16 +120,20 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
                 this, &Home::showEditMoviePage
                 );
 
+    QObject::connect(
+                ticketBtn, &QPushButton::clicked,
+                this, &Home::onBuyTicket
+                );
 }
 
 void Home::onRemoveMovie(){
     QPushButton * button = qobject_cast<QPushButton * >(sender());
-    QVBoxLayout * layout = mButtonToLayoutMap.take(button);
-    QString movieName = mButtonToMovieMap.take(button);
+    QVBoxLayout * layout = buttonToLayoutMap.take(button);
+    QString movieName = buttonToMovieMap.take(button);
 
-    for(int i=0; i<movies_copy.size(); i++){
-        if(movies_copy[i]["name"] == movieName){
-            movies_copy.remove(i);
+    for(int i=0; i<movies->size(); i++){
+        if(movies->value(i)["name"] == movieName){
+            movies->remove(i);
             break;
         }
     }
@@ -155,16 +154,58 @@ void Home::closeEvent(QCloseEvent *ev){
     moviesFile.open(QFile::Append | QFile::Truncate | QFile::Text);
     QTextStream qts(&moviesFile);
 
-    for(int i=0; i<movies_copy.length(); i++){
-        qts << movies_copy[i]["name"] << "\n" << movies_copy[i]["director"] << "\n"
-                                 << movies_copy[i]["cast"] << "\n" << movies_copy[i]["genre"]
-                                 << "\n" << movies_copy[i]["desc"] << "\n" << movies_copy[i]["tickets"]
+    for(int i=0; i<movies->length(); i++){
+        qts << movies->value(i)["name"] << "\n" << movies->value(i)["director"] << "\n"
+                                 << movies->value(i)["cast"] << "\n" << movies->value(i)["genre"]
+                                 << "\n" << movies->value(i)["desc"] << "\n" << movies->value(i)["tickets"]
                                  << "\n";
     }
     moviesFile.close();
 }
 
+void Home::showEvent(QShowEvent *ev){
+    QMainWindow::showEvent(ev);
+
+    ui->loged_user_label->setText("hello world");
+
+    for(int i=0; i<movies->length(); i++){
+        addMovie(movies->value(i));
+    }
+}
+
 void Home::showEditMoviePage(){
     editMoviePage->showMaximized();
     this->close();
+}
+
+void Home::onBuyTicket(){
+    QPushButton * button = qobject_cast<QPushButton * >(sender());
+    QString movieName = buttonToMovieTicketMap.value(button);
+    int inputTicket = buttonToTicketInputMap.value(button);
+    int availableTicket;
+
+    for(int i=0; i<movies->size(); i++){
+        QString x = movies->value(i)["name"];
+        if(x == movieName){
+            availableTicket = movies->value(i)["tickets"].toInt();
+
+            if(inputTicket <= availableTicket){
+                availableTicket -= inputTicket;
+                QString sTicket = QString::number(availableTicket);
+                // ************************************************** updating the vector ticket *********************
+                movies->value(i)["tickets"]= sTicket;
+                QVector<QMap<QString, QString>> * ttt = movies;
+
+                QString message = "بلیط با موفقیت خریداری شد";
+                QString title = "خرید بلیط";
+                QMessageBox::information(this, title, message);
+            }
+            else{
+                QString message = "تعداد بلیط خریداری شده بیشتر از موجودی فیلم می باشد";
+                QString title = "خرید بلیط";
+                QMessageBox::critical(this, title, message);
+            }
+            break;
+        }
+    }
 }

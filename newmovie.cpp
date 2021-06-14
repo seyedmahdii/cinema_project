@@ -3,12 +3,13 @@
 
 #include <QMessageBox>
 
-NewMovie::NewMovie(QWidget *parent, QMainWindow * mainWindowPage) :
+NewMovie::NewMovie(QWidget *parent, QMainWindow * mainWindowPage, QVector<QMap<QString, QString>> * movies) :
     QMainWindow(parent),
     ui(new Ui::NewMovie)
 {
     ui->setupUi(this);
     this->mainWindowPage = mainWindowPage;
+    this->movies = movies;
 }
 
 NewMovie::~NewMovie()
@@ -35,13 +36,24 @@ void NewMovie::on_submit_btn_clicked()
         QString title = "اضافه کردن فیلم جدید";
         QString message = "فیلم جدید با موفقیت اضافه شد";
         QMessageBox::information(this, title, message);
+
+        QMap<QString, QString> tMap;
+        tMap.insert("name", name);
+        tMap.insert("director", director);
+        tMap.insert("cast", cast);
+        tMap.insert("genre", genre);
+        tMap.insert("desc", desc);
+        QString sTicket = QString::number(tickets);
+        tMap.insert("tickets", sTicket);
+        movies->push_back(tMap);
+
         file.close();
         mainWindowPage->showMaximized();
         this->close();
     }
     else{
-        QString title = "خطا";
+        QString title = "خطا در ثبت فیلم";
         QString message ="فیلد ها را تکمیل نمایید";
-        QMessageBox::warning(this, title, message);
+        QMessageBox::critical(this, title, message);
     }
 }
