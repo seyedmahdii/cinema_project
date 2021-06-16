@@ -13,7 +13,8 @@ class EditMovie : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit EditMovie(QWidget *parent = nullptr, QMainWindow * mainWindowPage = nullptr);
+    explicit EditMovie(QWidget *parent = nullptr, QMainWindow * mainWindowPage = nullptr
+            , QVector<QMap<QString, QString>> * movies = nullptr, QString * movieName = nullptr);
     ~EditMovie();
 
 private slots:
@@ -23,6 +24,10 @@ private:
     Ui::EditMovie *ui;
 
     QMainWindow * mainWindowPage;
+
+    QVector<QMap<QString, QString>> * movies;
+    QString * movieName;
+    QString theMovieName;
 };
 
 #endif // EDITMOVIE_H

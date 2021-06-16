@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ادیت فیلم اسم فیلم اینجا</string>
+   <string>ویرایش فیلم</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#EditMovie{
@@ -106,7 +106,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-271</y>
+         <y>0</y>
          <width>781</width>
          <height>869</height>
         </rect>
@@ -195,7 +195,7 @@
                     </font>
                    </property>
                    <property name="text">
-                    <string>ویرایش فیلم اسم فیلم</string>
+                    <string>ویرایش فیلم</string>
                    </property>
                   </widget>
                  </item>
@@ -563,6 +563,12 @@
                      <height>90</height>
                     </size>
                    </property>
+                   <property name="font">
+                    <font>
+                     <family>B Yekan</family>
+                     <pointsize>14</pointsize>
+                    </font>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -617,7 +623,7 @@
                     </font>
                    </property>
                    <property name="minimum">
-                    <number>1</number>
+                    <number>0</number>
                    </property>
                   </widget>
                  </item>

@@ -37,8 +37,16 @@ public:
     void showEditMoviePage();
     void onBuyTicket();
 
+    void removeLayoutContent(QLayout* layout);
+
 private slots:
     void on_add_btn_clicked();
+
+    void on_searchBtn_clicked();
+
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
+    void on_type_input_textChanged(const QString &arg1);
 
 private:
     Ui::Home *ui;
@@ -47,12 +55,16 @@ private:
     EditMovie * editMoviePage;
     QMainWindow * mainWindowPage;
 
-    QHash<QPushButton *, QVBoxLayout *> buttonToLayoutMap;
-    QHash<QPushButton *, QString> buttonToMovieMap;
-    QHash<QPushButton *, QString> buttonToMovieTicketMap;
-    QHash<QPushButton *, int> buttonToTicketInputMap;
+    QHash<QPushButton *, QVBoxLayout *> buttonToLayout;
+    QHash<QPushButton *, QString> buttonToMovie;
+    QHash<QPushButton *, QString> buttonToMovieTicket;
+    QHash<QPushButton *, QString> buttonToEditMovie;
+    QHash<QPushButton *, int> buttonToTicketInput;
 
     QVector<QMap<QString, QString>> * movies;
+    QString * movieName;
+
+    QVBoxLayout * moviesLayout_Container;
 };
 
 #endif // HOME_H
