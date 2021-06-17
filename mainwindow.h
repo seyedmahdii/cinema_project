@@ -8,7 +8,6 @@
 #include <QStringList>
 
 #include "login.h"
-//#include "home.h"
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +30,8 @@ private:
     Ui::MainWindow *ui;
     Login * loginPage;
     Home * homePage;
+
+    QMap<QString, QString> * loggedUser;
 };
 
 #endif // MAINWINDOW_H

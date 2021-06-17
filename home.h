@@ -24,7 +24,8 @@ class Home : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Home(QWidget *parent = nullptr, QMainWindow * mainWindowPage = nullptr);
+    explicit Home(QWidget *parent = nullptr, QMainWindow * mainWindowPage = nullptr
+            , QMap<QString, QString> * loggedUser = nullptr);
     ~Home();
 
     void addMovie(QMap<QString, QString> singleMovie);
@@ -65,6 +66,8 @@ private:
     QString * movieName;
 
     QVBoxLayout * moviesLayout_Container;
+
+    QMap<QString, QString> * loggedUser;
 };
 
 #endif // HOME_H

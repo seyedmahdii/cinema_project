@@ -1,22 +1,22 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include <QWidget>
+#include <QMainWindow>
 
 #include "QMainWindow"
-
 #include "home.h"
 
 namespace Ui {
 class Login;
 }
 
-class Login : public QWidget
+class Login : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit Login(QWidget *parent = nullptr, QMainWindow * registerPage = nullptr);
+    explicit Login(QWidget *parent = nullptr, QMainWindow * registerPage = nullptr
+            , QMap<QString, QString> * loggedUser = nullptr);
     ~Login();
 
 private slots:
@@ -26,8 +26,11 @@ private slots:
 
 private:
     Ui::Login *ui;
+
     QMainWindow * registerPage;
     Home * homePage;
+
+    QMap<QString, QString> * loggedUser;
 };
 
 #endif // LOGIN_H

@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>عضویت در سینما</string>
+   <string>عضویت در سامانه</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resources.qrc">
@@ -70,7 +70,7 @@
 #un_input, #pw_input, #email_input{
 qlineargradient
 	height: 45px;
-	border-bottom: 2px solid #d6d6d6;
+	border: 1px solid #d6d6d6;
 	outline: none;
 	background-color: ;
 	color: #182848;
@@ -178,7 +178,7 @@ qlineargradient
                  <string notr="true"/>
                 </property>
                 <property name="text">
-                 <string>عضویت در سامانه</string>
+                 <string>عضویت در سینما</string>
                 </property>
                </widget>
               </item>
@@ -301,6 +301,9 @@ qlineargradient
                <number>20</number>
               </property>
               <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
                <number>0</number>
               </property>
               <item>

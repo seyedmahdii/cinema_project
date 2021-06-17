@@ -1,17 +1,14 @@
 #include "login.h"
 #include "ui_login.h"
 
-#include "mainwindow.h"
-#include <QMessageBox>
-
-Login::Login(QWidget *parent, QMainWindow * registerPage) :
-    QWidget(parent),
+Login::Login(QWidget *parent, QMainWindow * registerPage, QMap<QString, QString> * loggedUser) :
+    QMainWindow(parent),
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-    this->registerPage = registerPage;
 
-    homePage = new Home();
+    this->registerPage = registerPage;
+    this->loggedUser = loggedUser;
 }
 
 Login::~Login()
@@ -35,6 +32,10 @@ void Login::on_submit_btn_clicked()
                 QString message = "خوش اومدی.";
                 QMessageBox::information(this, title, qsl[0] + message);
 
+                loggedUser->insert("username", username);
+                loggedUser->insert("password", password);
+
+                homePage = new Home(nullptr, this, loggedUser);
                 homePage->showMaximized();
                 this->close();
                 break;

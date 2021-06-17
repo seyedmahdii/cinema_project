@@ -3,13 +3,14 @@
 
 #include "QMessageBox"
 
-Home::Home(QWidget *parent, QMainWindow * mainWindowPage) :
+Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString> * loggedUser) :
     QMainWindow(parent),
     ui(new Ui::Home)
 {
     ui->setupUi(this);
 
     this->mainWindowPage = mainWindowPage;
+    this->loggedUser = loggedUser;
 
     movies = new QVector<QMap<QString, QString>>();
     movieName = new QString();
@@ -55,6 +56,7 @@ Home::~Home()
     delete ui;
 }
 
+// Adding a new movie accessable for Admin
 void Home::on_add_btn_clicked()
 {
     newMoviePage->showMaximized();
@@ -66,12 +68,28 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
 
     QVBoxLayout * newMoviesLoayout = new QVBoxLayout();
 
-    // For admins
-    QPushButton * deleteBtn = new QPushButton("Delete");
-    newMoviesLoayout->addWidget(deleteBtn);
+    // Adding "delete" and "edit" btn accessable for admin
+    if(loggedUser->value("username") == "admin"){
+        QPushButton * deleteBtn = new QPushButton("Delete");
+        newMoviesLoayout->addWidget(deleteBtn);
 
-    QPushButton * editBtn = new QPushButton("Edit");
-    newMoviesLoayout->addWidget(editBtn);
+        QPushButton * editBtn = new QPushButton("Edit");
+        newMoviesLoayout->addWidget(editBtn);
+
+        buttonToLayout.insert(deleteBtn, newMoviesLoayout);
+        buttonToMovie.insert(deleteBtn, singleMovie["name"]);
+        buttonToEditMovie.insert(editBtn, singleMovie["name"]);
+
+        QObject::connect(
+                    deleteBtn, &QPushButton::clicked,
+                    this, &Home::onRemoveMovie
+                    );
+
+        QObject::connect(
+                    editBtn, &QPushButton::clicked,
+                    this, &Home::showEditMoviePage
+                    );
+    }
 
     // Spingbox and button for buying ticket
     QSpinBox * ticketInput = new QSpinBox();
@@ -106,21 +124,9 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
 
     upcomingLayouts_Container->insertLayout(2, newMoviesLoayout);
 
-    buttonToLayout.insert(deleteBtn, newMoviesLoayout);
-    buttonToMovie.insert(deleteBtn, singleMovie["name"]);
-    buttonToEditMovie.insert(editBtn, singleMovie["name"]);
+
     buttonToMovieTicket.insert(ticketBtn, singleMovie["name"]);
     buttonToTicketInput.insert(ticketBtn, ticketInput->value());
-
-    QObject::connect(
-                deleteBtn, &QPushButton::clicked,
-                this, &Home::onRemoveMovie
-                );
-
-    QObject::connect(
-                editBtn, &QPushButton::clicked,
-                this, &Home::showEditMoviePage
-                );
 
     QObject::connect(
                 ticketBtn, &QPushButton::clicked,
@@ -183,7 +189,7 @@ void Home::showEvent(QShowEvent *ev){
     QVBoxLayout * moviesLayout_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
     removeLayoutContent(moviesLayout_Container);
 
-    ui->loged_user_label->setText("USERNAME");
+    ui->loged_user_label->setText(loggedUser->value("username"));
 
     for(int i=0; i<movies->length(); i++){
         addMovie(movies->value(i));
@@ -239,11 +245,7 @@ void Home::on_searchBtn_clicked()
 void Home::on_comboBox_currentIndexChanged(const QString &genre)
 {
     QVBoxLayout * moviesLayout_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
-    while(moviesLayout_Container->count() != 0){
-        QLayoutItem * item = moviesLayout_Container->takeAt(0);
-        delete item->widget();
-        delete item;
-    }
+    removeLayoutContent(moviesLayout_Container);
 
     for(int i=0; i<movies->length(); i++){
         if(genre == "همه"){
@@ -258,11 +260,7 @@ void Home::on_comboBox_currentIndexChanged(const QString &genre)
 void Home::on_type_input_textChanged(const QString &inputValue)
 {
     QVBoxLayout * moviesLayout_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
-    while(moviesLayout_Container->count() != 0){
-        QLayoutItem * item = moviesLayout_Container->takeAt(0);
-        delete item->widget();
-        delete item;
-    }
+    removeLayoutContent(moviesLayout_Container);
 
     for(int i=0; i<movies->length(); i++){
         bool condition = movies->value(i)["name"].contains(inputValue) ||

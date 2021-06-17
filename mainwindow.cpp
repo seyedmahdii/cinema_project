@@ -8,8 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    loginPage = new Login(nullptr, this);
-    homePage = new Home(nullptr, this);
+    loggedUser = new QMap<QString, QString>();
+    loginPage = new Login(nullptr, this, loggedUser);
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +34,11 @@ void MainWindow::on_submit_btn_clicked()
         QString message = "خوش اومدی.";
         QMessageBox::information(this, title, username + message);
 
+        loggedUser->insert("username", username);
+        loggedUser->insert("password", password);
+        loggedUser->insert("email", email);
+
+        homePage = new Home(nullptr, this, loggedUser);
         homePage->showMaximized();
         this->close();
     }
