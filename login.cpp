@@ -35,6 +35,10 @@ void Login::on_submit_btn_clicked()
                 loggedUser->insert("username", username);
                 loggedUser->insert("password", password);
 
+                // Clearing the inputs
+                this->ui->un_input->setText("");
+                this->ui->pw_input->setText("");
+
                 homePage = new Home(nullptr, this, loggedUser);
                 homePage->showMaximized();
                 this->close();

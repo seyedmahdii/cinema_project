@@ -32,22 +32,22 @@ public:
 
     void onRemoveMovie();
 
-    void closeEvent(QCloseEvent *ev);
-    void showEvent(QShowEvent *ev);
+    void closeEvent(QCloseEvent *);
+    void showEvent(QShowEvent *);
 
     void showEditMoviePage();
     void onBuyTicket();
 
     void removeLayoutContent(QLayout* layout);
 
+    void showNewMoviePage();
+
 private slots:
-    void on_add_btn_clicked();
-
-    void on_searchBtn_clicked();
-
-    void on_comboBox_currentIndexChanged(const QString &arg1);
+    void on_genre_input_currentIndexChanged(const QString &arg1);
 
     void on_type_input_textChanged(const QString &arg1);
+
+    void on_logoutBtn_clicked();
 
 private:
     Ui::Home *ui;
@@ -59,8 +59,9 @@ private:
     QHash<QPushButton *, QVBoxLayout *> buttonToLayout;
     QHash<QPushButton *, QString> buttonToMovie;
     QHash<QPushButton *, QString> buttonToMovieTicket;
+    QHash<QPushButton *, QLabel *> buttonToMovieTicketLabel;
     QHash<QPushButton *, QString> buttonToEditMovie;
-    QHash<QPushButton *, int> buttonToTicketInput;
+    QHash<QPushButton *, QSpinBox *> buttonToTicketInput;
 
     QVector<QMap<QString, QString>> * movies;
     QString * movieName;

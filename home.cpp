@@ -48,19 +48,11 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
     moviesFile.close();
 
     newMoviePage = new NewMovie(nullptr, this, movies);
-
 }
 
 Home::~Home()
 {
     delete ui;
-}
-
-// Adding a new movie accessable for Admin
-void Home::on_add_btn_clicked()
-{
-    newMoviePage->showMaximized();
-    this->hide();
 }
 
 void Home::addMovie(QMap<QString, QString> singleMovie){
@@ -121,13 +113,13 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
 
     QLabel * ticketsLabel = new QLabel(singleMovie["tickets"]);
     newMoviesLoayout->addWidget(ticketsLabel);
+    buttonToMovieTicketLabel.insert(ticketBtn, ticketsLabel);
 
     upcomingLayouts_Container->insertLayout(2, newMoviesLoayout);
 
 
     buttonToMovieTicket.insert(ticketBtn, singleMovie["name"]);
-    buttonToTicketInput.insert(ticketBtn, ticketInput->value());
-
+    buttonToTicketInput.insert(ticketBtn, ticketInput);
     QObject::connect(
                 ticketBtn, &QPushButton::clicked,
                 this, &Home::onBuyTicket
@@ -149,9 +141,7 @@ void Home::onRemoveMovie(){
     removeLayoutContent(layout);
 }
 
-void Home::closeEvent(QCloseEvent *ev){
-    QMainWindow::closeEvent(ev);
-
+void Home::closeEvent(QCloseEvent *){
 //     Updating movies file
     QFile moviesFile("movies.txt");
     moviesFile.open(QFile::Append | QFile::Truncate | QFile::Text);
@@ -182,18 +172,36 @@ void Home::removeLayoutContent(QLayout * layout){
     }
 }
 
-void Home::showEvent(QShowEvent *ev){
-    QMainWindow::showEvent(ev);
-
+void Home::showEvent(QShowEvent *){
     // Clearing the movies container before adding items
     QVBoxLayout * moviesLayout_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
     removeLayoutContent(moviesLayout_Container);
-
-    ui->loged_user_label->setText(loggedUser->value("username"));
-
+    // Adding movies
     for(int i=0; i<movies->length(); i++){
         addMovie(movies->value(i));
     }
+
+    // Updating the user's name
+    ui->loged_user_label->setText(loggedUser->value("username"));
+
+    // Adding "New Movie" button for admin
+    if(loggedUser->value("username") == "admin"){
+        QHBoxLayout * newMovieBtnLayout = qobject_cast<QHBoxLayout *>(ui->addMovie_wrapper);
+        QPushButton * newMovieBtn = new QPushButton("فیلم جدید");
+
+        newMovieBtnLayout->addWidget(newMovieBtn);
+        QObject::connect(
+                    newMovieBtn, &QPushButton::clicked,
+                    this, &Home::showNewMoviePage
+                    );
+    }
+}
+
+// Adding a new movie accessable for Admin
+void Home::showNewMoviePage()
+{
+    newMoviePage->showMaximized();
+    this->hide();
 }
 
 void Home::showEditMoviePage(){
@@ -209,8 +217,9 @@ void Home::showEditMoviePage(){
 
 void Home::onBuyTicket(){
     QPushButton * button = qobject_cast<QPushButton * >(sender());
+    QLabel * ticketLabel = buttonToMovieTicketLabel.value(button);
     QString movieName = buttonToMovieTicket.value(button);
-    int inputTicket = buttonToTicketInput.value(button);
+    int inputTicket = buttonToTicketInput.value(button)->value();
     int availableTicket;
 
     for(int i=0; i<movies->size(); i++){
@@ -222,6 +231,10 @@ void Home::onBuyTicket(){
                 availableTicket -= inputTicket;
                 QString sTicket = QString::number(availableTicket);
                 (*movies)[i]["tickets"] = sTicket;
+                ticketLabel->setText(sTicket);
+                if(availableTicket == 0){
+                    button->setEnabled(false);
+                }
 
                 QString message = "بلیط با موفقیت خریداری شد";
                 QString title = "خرید بلیط";
@@ -237,12 +250,7 @@ void Home::onBuyTicket(){
     }
 }
 
-void Home::on_searchBtn_clicked()
-{
-
-}
-
-void Home::on_comboBox_currentIndexChanged(const QString &genre)
+void Home::on_genre_input_currentIndexChanged(const QString &genre)
 {
     QVBoxLayout * moviesLayout_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
     removeLayoutContent(moviesLayout_Container);
@@ -272,4 +280,10 @@ void Home::on_type_input_textChanged(const QString &inputValue)
             addMovie(movies->value(i));
         }
     }
+}
+
+void Home::on_logoutBtn_clicked()
+{
+    mainWindowPage->showMaximized();
+    this->close();
 }

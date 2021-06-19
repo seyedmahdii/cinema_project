@@ -65,3 +65,9 @@ void EditMovie::on_submit_btn_clicked()
         QMessageBox::critical(this, title, message);
     }
 }
+
+void EditMovie::on_back_btn_clicked()
+{
+    this->close();
+    mainWindowPage->showMaximized();
+}

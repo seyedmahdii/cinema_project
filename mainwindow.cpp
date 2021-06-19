@@ -38,6 +38,11 @@ void MainWindow::on_submit_btn_clicked()
         loggedUser->insert("password", password);
         loggedUser->insert("email", email);
 
+        // Clearing the inputs
+        this->ui->un_input->setText("");
+        this->ui->pw_input->setText("");
+        this->ui->email_input->setText("");
+
         homePage = new Home(nullptr, this, loggedUser);
         homePage->showMaximized();
         this->close();

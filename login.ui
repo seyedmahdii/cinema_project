@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>ورود به سامانه</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/images/logo.svg</normaloff>:/images/logo.svg</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -82,15 +86,17 @@
 #footer_log_btn:hover, #footer_sign_btn:hover{
 	color: #4b6cb7;
 }
-
-
-
-
 </string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>20</number>
+      </property>
       <item>
        <widget class="QWidget" name="section_center" native="true">
         <property name="minimumSize">
@@ -207,8 +213,8 @@
                 <widget class="QLabel" name="icon">
                  <property name="minimumSize">
                   <size>
-                   <width>100</width>
-                   <height>100</height>
+                   <width>0</width>
+                   <height>0</height>
                   </size>
                  </property>
                  <property name="maximumSize">
@@ -278,7 +284,7 @@
                  <property name="maximumSize">
                   <size>
                    <width>320</width>
-                   <height>16777215</height>
+                   <height>35</height>
                   </size>
                  </property>
                  <property name="font">
@@ -308,15 +314,24 @@
             <item>
              <widget class="QWidget" name="pw_wrapper" native="true">
               <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
                <property name="topMargin">
                 <number>20</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
                </property>
                <item>
                 <widget class="QLineEdit" name="pw_input">
                  <property name="maximumSize">
                   <size>
                    <width>320</width>
-                   <height>16777215</height>
+                   <height>35</height>
                   </size>
                  </property>
                  <property name="font">

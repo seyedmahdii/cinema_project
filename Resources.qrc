@@ -15,13 +15,11 @@
         <file>images/the-unholy.jpg</file>
         <file>images/wrath-of-man.jpg</file>
         <file>images/search-icon.png</file>
-        <file>images/comedy-icon.png</file>
-        <file>images/detective-icon.png</file>
-        <file>images/documentary-icon.png</file>
         <file>images/theatre-mask-icon.png</file>
         <file>images/iron-man-icon.png</file>
         <file>images/logo.svg</file>
-        <file>images/Logo.png</file>
-        <file>images/Logo_color.png</file>
+        <file>images/user-black.png</file>
+        <file>images/logout-black.png</file>
+        <file>images/back-color.png</file>
     </qresource>
 </RCC>

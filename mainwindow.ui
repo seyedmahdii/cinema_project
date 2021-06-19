@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Resources.qrc">
-    <normaloff>:/images/Logo_color.png</normaloff>:/images/Logo_color.png</iconset>
+    <normaloff>:/images/logo.svg</normaloff>:/images/logo.svg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">#MainWindow{

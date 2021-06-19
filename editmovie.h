@@ -20,6 +20,8 @@ public:
 private slots:
     void on_submit_btn_clicked();
 
+    void on_back_btn_clicked();
+
 private:
     Ui::EditMovie *ui;
 
