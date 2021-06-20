@@ -10,6 +10,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     loggedUser = new QMap<QString, QString>();
     loginPage = new Login(nullptr, this, loggedUser);
+
+    users = new QVector<QMap<QString, QString>>();
+
+    QFile usersFile("users.txt");
+    usersFile.open(QFile::Text | QFile::ReadOnly);
+    QTextStream qts(&usersFile);
+    while(!qts.atEnd()){
+        QStringList qsl = qts.readLine().split(" ");
+        QMap<QString, QString> singleUser;
+        singleUser.insert("username", qsl[0]);
+        singleUser.insert("password", qsl[1]);
+        singleUser.insert("email", qsl[2]);
+        users->push_back(singleUser);
+    }
+    usersFile.close();
 }
 
 MainWindow::~MainWindow()
@@ -27,11 +42,31 @@ void MainWindow::on_submit_btn_clicked()
     QString password = this->ui->pw_input->text();
     QString email = this->ui->email_input->text();
 
-    if(username!="" && password!="" && email!=""){
+    if(username=="" || password=="" || email==""){
+        QString title = "خطا در ثبت نام";
+        QString message ="فیلد ها را تکمیل نمایید";
+        QMessageBox::critical(this, title, message);
+    }
+    else if(username.contains(" ") || password.contains(" ") || email.contains(" ")){
+        QString title = "خطا در ثبت نام";
+        QString message ="فاصله مجاز نمی باشد";
+        QMessageBox::critical(this, title, message);
+    }
+    else{
+        // Checking unique usernames
+        for(int i=0; i<users->length(); i++){
+            if(users->value(i)["username"] == username){
+                QString title = "خطا در نام کاربری";
+                QString message = "این نام کاربری قبلا ثبت شده است";
+                QMessageBox::critical(this, title, message);
+                return;
+            }
+        }
+
         qts << username + " " + password + " " + email + "\n";
 
-        QString title = "اومدی داخل";
-        QString message = "خوش اومدی.";
+        QString title = "ثبت نام";
+        QString message = "ثبت نام با موفقیت انجام شد";
         QMessageBox::information(this, title, username + message);
 
         loggedUser->insert("username", username);
@@ -46,11 +81,6 @@ void MainWindow::on_submit_btn_clicked()
         homePage = new Home(nullptr, this, loggedUser);
         homePage->showMaximized();
         this->close();
-    }
-    else{
-        QString title = "خطا";
-        QString message ="فیلد ها را تکمیل نمایید";
-        QMessageBox::warning(this, title, message);
     }
     file.close();
 }

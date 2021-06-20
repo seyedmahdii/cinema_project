@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include <Qfile>
+#include <QFile>
 #include <QTextStream>
 #include <QStringList>
 
@@ -32,6 +32,7 @@ private:
     Home * homePage;
 
     QMap<QString, QString> * loggedUser;
+    QVector<QMap<QString, QString>> * users;
 };
 
 #endif // MAINWINDOW_H

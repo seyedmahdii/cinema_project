@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>خانه</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resources.qrc">
@@ -40,16 +40,16 @@
 	color: #182848;
 	border-radius: 6px;
 }
-#add_btn, #newMovieBtn{
+#newMovie_btn{
 	background-color: #182848;
-	height: 40px;
-	width: 80px;
+	height: 35px;
+	width: 75px;
 	border-radius: 5px;
 	border: 1px solid transparent;	
 	color: white;
 	font: 10.5pt &quot;B Yekan&quot;;
 }
-#add_btn:hover, #newMovieBtn:hover{
+#newMovie_btn:hover{
 	background-color: white;	
 	border-color: #182848;	
 	color: #182848;
@@ -297,7 +297,7 @@
                    <number>10</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="add_btn">
+                   <widget class="QPushButton" name="newMovie_btn">
                     <property name="enabled">
                      <bool>true</bool>
                     </property>

@@ -48,6 +48,14 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
     moviesFile.close();
 
     newMoviePage = new NewMovie(nullptr, this, movies);
+
+    // Adding "New Movie" button for admin
+    if((*loggedUser)["username"] == "admin"){
+        this->ui->newMovie_btn->setVisible(true);
+    }
+    else{
+        this->ui->newMovie_btn->setVisible(false);
+    }
 }
 
 Home::~Home()
@@ -183,25 +191,6 @@ void Home::showEvent(QShowEvent *){
 
     // Updating the user's name
     ui->loged_user_label->setText(loggedUser->value("username"));
-
-    // Adding "New Movie" button for admin
-    if(loggedUser->value("username") == "admin"){
-        QHBoxLayout * newMovieBtnLayout = qobject_cast<QHBoxLayout *>(ui->addMovie_wrapper);
-        QPushButton * newMovieBtn = new QPushButton("فیلم جدید");
-
-        newMovieBtnLayout->addWidget(newMovieBtn);
-        QObject::connect(
-                    newMovieBtn, &QPushButton::clicked,
-                    this, &Home::showNewMoviePage
-                    );
-    }
-}
-
-// Adding a new movie accessable for Admin
-void Home::showNewMoviePage()
-{
-    newMoviePage->showMaximized();
-    this->hide();
 }
 
 void Home::showEditMoviePage(){
@@ -285,5 +274,11 @@ void Home::on_type_input_textChanged(const QString &inputValue)
 void Home::on_logoutBtn_clicked()
 {
     mainWindowPage->showMaximized();
+    this->close();
+}
+
+void Home::on_newMovie_btn_clicked()
+{
+    newMoviePage->showMaximized();
     this->close();
 }
