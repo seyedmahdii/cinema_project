@@ -51,10 +51,18 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
 
     // Adding "New Movie" button for admin
     if((*loggedUser)["username"] == "admin"){
-        this->ui->newMovie_btn->setVisible(true);
-    }
-    else{
-        this->ui->newMovie_btn->setVisible(false);
+        QPushButton * newMovie_btn = new QPushButton("فیلم جدید");
+        ui->addMovie_wrapper->addWidget(newMovie_btn);
+
+        newMovie_btn->setObjectName("newMovie_btn");
+        newMovie_btn->setStyleSheet(QString(""
+                                 "#newMovie_btn{background-color: #182848; height: 35px; width: 75px; border-radius: 5px; border: 1px solid transparent; color: white; font: 10.5pt B Yekan; cursor: pointing;}"
+                                 "#newMovie_btn:hover{background-color: white; border-color: #182848; color: #182848;}"
+                                 ));
+        QObject::connect(
+                    newMovie_btn, &QPushButton::clicked,
+                    this, &Home::showNewMoviePage
+                    );
     }
 }
 
@@ -277,7 +285,7 @@ void Home::on_logoutBtn_clicked()
     this->close();
 }
 
-void Home::on_newMovie_btn_clicked()
+void Home::showNewMoviePage()
 {
     newMoviePage->showMaximized();
     this->close();

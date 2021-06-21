@@ -90,3 +90,22 @@ void MainWindow::on_footer_log_btn_clicked()
     loginPage->showMaximized();
     this->close();
 }
+
+void MainWindow::on_pw_visibility_btn_clicked()
+{
+    if(isPasswordVisibile){
+        this->ui->pw_input->setEchoMode(QLineEdit::Password);
+
+        QIcon * btn_icon = new QIcon();
+        btn_icon->addPixmap(QPixmap(":/images/eye-icon.png"),QIcon::Normal,QIcon::On);
+        this->ui->pw_visibility_btn->setIcon(* btn_icon);
+    }
+    else{
+        this->ui->pw_input->setEchoMode(QLineEdit::Normal);
+
+        QIcon * btn_icon = new QIcon();
+        btn_icon->addPixmap(QPixmap(":/images/closeeye-icon.png"),QIcon::Normal,QIcon::On);
+        this->ui->pw_visibility_btn->setIcon(* btn_icon);
+    }
+    isPasswordVisibile = !isPasswordVisibile;
+}

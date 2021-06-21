@@ -40,20 +40,6 @@
 	color: #182848;
 	border-radius: 6px;
 }
-#newMovie_btn{
-	background-color: #182848;
-	height: 35px;
-	width: 75px;
-	border-radius: 5px;
-	border: 1px solid transparent;	
-	color: white;
-	font: 10.5pt &quot;B Yekan&quot;;
-}
-#newMovie_btn:hover{
-	background-color: white;	
-	border-color: #182848;	
-	color: #182848;
-}
 #loged_user_label{
 	font: 13pt;
 }
@@ -296,37 +282,6 @@
                   <property name="rightMargin">
                    <number>10</number>
                   </property>
-                  <item>
-                   <widget class="QPushButton" name="newMovie_btn">
-                    <property name="enabled">
-                     <bool>true</bool>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>B Yekan</family>
-                      <pointsize>11</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                    <property name="cursor">
-                     <cursorShape>PointingHandCursor</cursorShape>
-                    </property>
-                    <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;New Movie&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                    <property name="autoFillBackground">
-                     <bool>false</bool>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
-                    <property name="text">
-                     <string>فیلم جدید</string>
-                    </property>
-                   </widget>
-                  </item>
                  </layout>
                 </item>
                </layout>

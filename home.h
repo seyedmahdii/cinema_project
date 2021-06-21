@@ -39,6 +39,7 @@ public:
     void onBuyTicket();
 
     void removeLayoutContent(QLayout* layout);
+    void showNewMoviePage();
 
 private slots:
     void on_genre_input_currentIndexChanged(const QString &arg1);
@@ -46,8 +47,6 @@ private slots:
     void on_type_input_textChanged(const QString &arg1);
 
     void on_logoutBtn_clicked();
-
-    void on_newMovie_btn_clicked();
 
 private:
     Ui::Home *ui;

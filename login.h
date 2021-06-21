@@ -24,6 +24,8 @@ private slots:
 
     void on_footer_sign_btn_clicked();
 
+    void on_pw_visibility_btn_clicked();
+
 private:
     Ui::Login *ui;
 
@@ -31,6 +33,7 @@ private:
     Home * homePage;
 
     QMap<QString, QString> * loggedUser;
+    bool isPasswordVisibile = false;
 };
 
 #endif // LOGIN_H

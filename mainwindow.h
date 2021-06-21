@@ -21,10 +21,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void visibility_btn_hovered();
+
 private slots:
     void on_submit_btn_clicked();
 
     void on_footer_log_btn_clicked();
+
+    void on_pw_visibility_btn_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -33,6 +37,8 @@ private:
 
     QMap<QString, QString> * loggedUser;
     QVector<QMap<QString, QString>> * users;
+
+    bool isPasswordVisibile = false;
 };
 
 #endif // MAINWINDOW_H
