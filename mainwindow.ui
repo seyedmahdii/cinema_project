@@ -379,6 +379,25 @@ qlineargradient
                  <number>0</number>
                 </property>
                 <item>
+                 <widget class="QLineEdit" name="pw_input">
+                  <property name="maximumSize">
+                   <size>
+                    <width>320</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>B Yekan</family>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="echoMode">
+                   <enum>QLineEdit::Password</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QPushButton" name="pw_visibility_btn">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
@@ -395,25 +414,6 @@ qlineargradient
                     <width>20</width>
                     <height>20</height>
                    </size>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="pw_input">
-                  <property name="maximumSize">
-                   <size>
-                    <width>320</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>B Yekan</family>
-                    <pointsize>14</pointsize>
-                   </font>
-                  </property>
-                  <property name="echoMode">
-                   <enum>QLineEdit::Password</enum>
                   </property>
                  </widget>
                 </item>

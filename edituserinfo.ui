@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Login</class>
- <widget class="QMainWindow" name="Login">
+ <class>EditUserInfo</class>
+ <widget class="QMainWindow" name="EditUserInfo">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ورود به سامانه</string>
+   <string>ویرایش اطلاعات</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resources.qrc">
@@ -31,6 +31,11 @@
 	margin-top: 20px;
 }
 
+#back_btn{
+	background-color: transparent;
+	border: none;
+}
+
 #title{
 	color: #182848;
 }
@@ -40,16 +45,16 @@
 	border-radius: 50px;
 }
 #icon{
-
+	margin: 0 -10px 0 5px;
 }
 
 #form{
 	background-color: ;
 }
-#un_wrapper, #pw_wrapper{
+#un_wrapper, #pw_wrapper, #email_wrapper{
 	background-color: ;
 }
-#un_input, #pw_input{
+#un_input, #pw_input, #email_input{
 	height: 45px;
 	border: 1px solid #d6d6d6;
 	outline: none;
@@ -139,6 +144,69 @@
           <number>20</number>
          </property>
          <item>
+          <widget class="QFrame" name="back_btn_wrapper">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <property name="leftMargin">
+             <number>5</number>
+            </property>
+            <property name="topMargin">
+             <number>15</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>372</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="back_btn">
+              <property name="maximumSize">
+               <size>
+                <width>40</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="Resources.qrc">
+                <normaloff>:/images/back-color.png</normaloff>:/images/back-color.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>35</width>
+                <height>35</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
           <widget class="QWidget" name="header" native="true">
            <property name="maximumSize">
             <size>
@@ -151,7 +219,7 @@
              <number>9</number>
             </property>
             <property name="topMargin">
-             <number>25</number>
+             <number>10</number>
             </property>
             <property name="rightMargin">
              <number>9</number>
@@ -183,7 +251,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>ورود به سینما</string>
+                 <string>ویرایش اطلاعات</string>
                 </property>
                </widget>
               </item>
@@ -237,11 +305,14 @@
                    <height>100</height>
                   </size>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="Resources.qrc">:/images/lock.png</pixmap>
+                  <pixmap resource="Resources.qrc">:/images/edit-profile-white.png</pixmap>
                  </property>
                  <property name="scaledContents">
                   <bool>true</bool>
@@ -250,7 +321,7 @@
                   <bool>false</bool>
                  </property>
                  <property name="margin">
-                  <number>8</number>
+                  <number>3</number>
                  </property>
                 </widget>
                </item>
@@ -445,91 +516,11 @@
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="text">
-                 <string>ورود</string>
+                 <string>ویرایش</string>
                 </property>
                </widget>
               </item>
              </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="footer" native="true">
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <property name="topMargin">
-             <number>10</number>
-            </property>
-            <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="footer_wrapper">
-              <property name="leftMargin">
-               <number>20</number>
-              </property>
-              <property name="topMargin">
-               <number>5</number>
-              </property>
-              <property name="rightMargin">
-               <number>20</number>
-              </property>
-              <property name="bottomMargin">
-               <number>5</number>
-              </property>
-              <item>
-               <widget class="QPushButton" name="footer_sign_btn">
-                <property name="font">
-                 <font>
-                  <family>B Yekan</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string>ثبت نام کنید.</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="footer_span">
-                <property name="font">
-                 <font>
-                  <family>B Yekan</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>عضو نیستید؟</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </widget>

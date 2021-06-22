@@ -275,7 +275,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="addMovie_wrapper">
+                 <layout class="QHBoxLayout" name="header_btn_wrapper">
                   <property name="leftMargin">
                    <number>10</number>
                   </property>

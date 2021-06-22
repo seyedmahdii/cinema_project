@@ -48,6 +48,14 @@ void NewMovie::on_submit_btn_clicked()
         movies->push_back(tMap);
 
         file.close();
+
+        this->ui->name_input->setText("");
+        this->ui->director_input->setText("");
+        this->ui->cast_input->setText("");
+        this->ui->genre_input->setCurrentText("ترسناک");
+        this->ui->desc_input->setText("");
+        ui->ticket_input->setValue(1);
+
         mainWindowPage->showMaximized();
         this->close();
     }

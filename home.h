@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
+
 #include "newmovie.h"
 #include "editmovie.h"
+#include "edituserinfo.h"
 
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -40,6 +42,8 @@ public:
 
     void removeLayoutContent(QLayout* layout);
     void showNewMoviePage();
+    void showUsersPage();
+    void showEditUserInfoPage();
 
 private slots:
     void on_genre_input_currentIndexChanged(const QString &arg1);
@@ -54,6 +58,7 @@ private:
     NewMovie * newMoviePage;
     EditMovie * editMoviePage;
     QMainWindow * mainWindowPage;
+    EditUserInfo * editUserInfoPage;
 
     QHash<QPushButton *, QVBoxLayout *> buttonToLayout;
     QHash<QPushButton *, QString> buttonToMovie;

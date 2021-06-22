@@ -168,6 +168,9 @@
               </property>
               <item>
                <layout class="QHBoxLayout" name="back_btn_wrapper">
+                <property name="leftMargin">
+                 <number>5</number>
+                </property>
                 <property name="rightMargin">
                  <number>5</number>
                 </property>

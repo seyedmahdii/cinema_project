@@ -21,5 +21,6 @@
         <file>images/user-black.png</file>
         <file>images/logout-black.png</file>
         <file>images/back-color.png</file>
+        <file>images/edit-profile-white.png</file>
     </qresource>
 </RCC>

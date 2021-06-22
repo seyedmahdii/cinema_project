@@ -48,11 +48,12 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
     moviesFile.close();
 
     newMoviePage = new NewMovie(nullptr, this, movies);
+    editUserInfoPage = new EditUserInfo(nullptr, this, loggedUser);
 
     // Adding "New Movie" button for admin
     if((*loggedUser)["username"] == "admin"){
         QPushButton * newMovie_btn = new QPushButton("فیلم جدید");
-        ui->addMovie_wrapper->addWidget(newMovie_btn);
+        ui->header_btn_wrapper->addWidget(newMovie_btn);
 
         newMovie_btn->setObjectName("newMovie_btn");
         newMovie_btn->setStyleSheet(QString(""
@@ -62,6 +63,36 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
         QObject::connect(
                     newMovie_btn, &QPushButton::clicked,
                     this, &Home::showNewMoviePage
+                    );
+    }
+
+    // Adding "Users" button
+    if((*loggedUser)["username"] == "admin"){
+        QPushButton * users_btn = new QPushButton("کاربران");
+        ui->header_btn_wrapper->addWidget(users_btn);
+
+        users_btn->setObjectName("users_btn");
+        users_btn->setStyleSheet(QString(""
+                                 "#users_btn{background-color: white; width: 75px; height: 35px; border-radius: 5px; border: 1px solid #182848; color: #182848; font: 10.5pt B Yekan;}"
+                                 "#users_btn:hover{background-color: #182848; color: white; border-color: tranparent;}"
+                                 ));
+        QObject::connect(
+                    users_btn, &QPushButton::clicked,
+                    this, &Home::showUsersPage
+                    );
+    }
+    else{
+        QPushButton * info_btn = new QPushButton("ویرایش مشخصات");
+        ui->header_btn_wrapper->addWidget(info_btn);
+
+        info_btn->setObjectName("info_btn");
+        info_btn->setStyleSheet(QString(""
+                                        "#info_btn{background-color: white; width: 100px; height: 35px; border-radius: 5px; border: 1px solid #182848; color: #182848; font: 10.5pt B Yekan;}"
+                                        "#info_btn:hover{background-color: #182848; color: white; border-color: tranparent;}"
+                                 ));
+        QObject::connect(
+                    info_btn, &QPushButton::clicked,
+                    this, &Home::showEditUserInfoPage
                     );
     }
 }
@@ -158,7 +189,7 @@ void Home::onRemoveMovie(){
 }
 
 void Home::closeEvent(QCloseEvent *){
-//     Updating movies file
+    // Updating movies file
     QFile moviesFile("movies.txt");
     moviesFile.open(QFile::Append | QFile::Truncate | QFile::Text);
     QTextStream qts(&moviesFile);
@@ -288,5 +319,13 @@ void Home::on_logoutBtn_clicked()
 void Home::showNewMoviePage()
 {
     newMoviePage->showMaximized();
+    this->close();
+}
+
+void Home::showUsersPage(){
+
+}
+void Home::showEditUserInfoPage(){
+    editUserInfoPage->showMaximized();
     this->close();
 }
