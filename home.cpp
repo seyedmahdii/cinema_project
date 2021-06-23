@@ -49,6 +49,7 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
 
     newMoviePage = new NewMovie(nullptr, this, movies);
     editUserInfoPage = new EditUserInfo(nullptr, this, loggedUser);
+    usersPage = new Users(nullptr, this);
 
     // Adding "New Movie" button for admin
     if((*loggedUser)["username"] == "admin"){
@@ -68,12 +69,12 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
 
     // Adding "Users" button
     if((*loggedUser)["username"] == "admin"){
-        QPushButton * users_btn = new QPushButton("کاربران");
+        QPushButton * users_btn = new QPushButton("مدیریت کاربران‌");
         ui->header_btn_wrapper->addWidget(users_btn);
 
         users_btn->setObjectName("users_btn");
         users_btn->setStyleSheet(QString(""
-                                 "#users_btn{background-color: white; width: 75px; height: 35px; border-radius: 5px; border: 1px solid #182848; color: #182848; font: 10.5pt B Yekan;}"
+                                 "#users_btn{background-color: white; width: 95px; height: 35px; border-radius: 5px; border: 1px solid #182848; color: #182848; font: 10.5pt B Yekan;}"
                                  "#users_btn:hover{background-color: #182848; color: white; border-color: tranparent;}"
                                  ));
         QObject::connect(
@@ -323,7 +324,8 @@ void Home::showNewMoviePage()
 }
 
 void Home::showUsersPage(){
-
+    this->close();
+    usersPage->showMaximized();
 }
 void Home::showEditUserInfoPage(){
     editUserInfoPage->showMaximized();

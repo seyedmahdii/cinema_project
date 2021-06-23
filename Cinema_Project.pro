@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     newmovie.cpp \
     editmovie.cpp \
     login.cpp \
-    edituserinfo.cpp
+    edituserinfo.cpp \
+    users.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -38,14 +39,16 @@ HEADERS  += mainwindow.h \
     newmovie.h \
     editmovie.h \
     login.h \
-    edituserinfo.h
+    edituserinfo.h \
+    users.h
 
 FORMS    += mainwindow.ui \
     home.ui \
     newmovie.ui \
     editmovie.ui \
     login.ui \
-    edituserinfo.ui
+    edituserinfo.ui \
+    users.ui
 
 RESOURCES += \
     Resources.qrc

@@ -67,7 +67,7 @@ void MainWindow::on_submit_btn_clicked()
 
         QString title = "ثبت نام";
         QString message = "ثبت نام با موفقیت انجام شد";
-        QMessageBox::information(this, title, username + message);
+        QMessageBox::information(this, title, message);
 
         loggedUser->insert("username", username);
         loggedUser->insert("password", password);

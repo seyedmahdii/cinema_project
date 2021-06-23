@@ -92,19 +92,6 @@
                 stop:1 #4b6cb7, stop: 0.2 #182848, stop:1 #4b6cb7);
 }
 
-#footer_span{
-	color: rgb(105, 105, 105);
-	margin-top: 2px;
-	margin-left: -5px;
-}
-#footer_log_btn, #footer_sign_btn{
-	outline: none;
-    border: none;
-    color: rgb(59, 59, 59);
-}
-#footer_log_btn:hover, #footer_sign_btn:hover{
-	color: #4b6cb7;
-}
 </string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">

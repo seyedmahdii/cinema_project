@@ -7,6 +7,7 @@
 #include "newmovie.h"
 #include "editmovie.h"
 #include "edituserinfo.h"
+#include "users.h"
 
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -59,6 +60,7 @@ private:
     EditMovie * editMoviePage;
     QMainWindow * mainWindowPage;
     EditUserInfo * editUserInfoPage;
+    Users * usersPage;
 
     QHash<QPushButton *, QVBoxLayout *> buttonToLayout;
     QHash<QPushButton *, QString> buttonToMovie;
