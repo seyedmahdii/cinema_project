@@ -75,6 +75,8 @@ private:
     QVBoxLayout * moviesLayout_Container;
 
     QMap<QString, QString> * loggedUser;
+
+    QString searched_genre = "all", searched_input;
 };
 
 #endif // HOME_H

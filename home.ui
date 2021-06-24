@@ -46,7 +46,8 @@
 #logoutBtn{
 	background-color: transparent;
 	border: none;
-}</string>
+}
+</string>
   </property>
   <widget class="QWidget" name="main">
    <property name="sizePolicy">
@@ -358,47 +359,47 @@
                   </property>
                   <item>
                    <property name="text">
-                    <string>همه</string>
+                    <string>all</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>ترسناک</string>
+                    <string>horror</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>اکشن</string>
+                    <string>action</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>علمی-تخیلی</string>
+                    <string>science-fiction</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>درام</string>
+                    <string>drama</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>رمان</string>
+                    <string>romance</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>کمدی</string>
+                    <string>comedy</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>موریکال</string>
+                    <string>musical</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>زندگی نامه</string>
+                    <string>adventure</string>
                    </property>
                   </item>
                  </widget>

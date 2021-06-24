@@ -116,7 +116,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-281</y>
          <width>781</width>
          <height>879</height>
         </rect>
@@ -541,42 +541,42 @@
                    </property>
                    <item>
                     <property name="text">
-                     <string>ترسناک</string>
+                     <string>horror</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>اکشن</string>
+                     <string>action</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>علمی - تخیلی</string>
+                     <string>science-fiction</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>درام</string>
+                     <string>drama</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>رمان</string>
+                     <string>romance</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>کمدی</string>
+                     <string>comedy</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>موزیکال</string>
+                     <string>musical</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>زندگی نامه</string>
+                     <string>adventure</string>
                     </property>
                    </item>
                   </widget>

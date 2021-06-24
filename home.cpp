@@ -285,13 +285,38 @@ void Home::on_genre_input_currentIndexChanged(const QString &genre)
     removeLayoutContent(moviesLayout_Container);
 
     for(int i=0; i<movies->length(); i++){
-        if(genre == "همه"){
+        bool condition = ( movies->value(i)["name"].contains(searched_input) ||
+                movies->value(i)["director"].contains(searched_input) ||
+                movies->value(i)["cast"].contains(searched_input) ||
+                movies->value(i)["genre"].contains(searched_input) ||
+                movies->value(i)["desc"].contains(searched_input) )
+                ;
+
+        if(genre == "all"){
             addMovie(movies->value(i));
+            this->ui->type_input->setText("");
         }
-        else if(movies->value(i)["genre"] == genre){
+        else if(movies->value(i)["genre"] == genre && condition){
             addMovie(movies->value(i));
         }
     }
+
+    int no_movie = moviesLayout_Container->count();
+
+    if(no_movie == 0){
+        QVBoxLayout * upcomingLayouts_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
+        QVBoxLayout * noMoviesLabelLoayout = new QVBoxLayout();
+
+        QLabel * lbl = new QLabel();
+        lbl->setObjectName("no_movie_label");
+        lbl->setStyleSheet(QString("#no_movie_label{color: #182848; font: 20pt B Yekan;}"));
+        QString message = "چنین فیلمی یافت نشد";
+        lbl->setText(message);
+        noMoviesLabelLoayout->addWidget(lbl);
+        upcomingLayouts_Container->insertLayout(0, noMoviesLabelLoayout);
+    }
+
+    searched_genre = genre;
 }
 
 void Home::on_type_input_textChanged(const QString &inputValue)
@@ -299,16 +324,41 @@ void Home::on_type_input_textChanged(const QString &inputValue)
     QVBoxLayout * moviesLayout_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
     removeLayoutContent(moviesLayout_Container);
 
+    bool no_movie = true;
+
     for(int i=0; i<movies->length(); i++){
-        bool condition = movies->value(i)["name"].contains(inputValue) ||
+        bool condition = ( movies->value(i)["name"].contains(inputValue) ||
                 movies->value(i)["director"].contains(inputValue) ||
                 movies->value(i)["cast"].contains(inputValue) ||
                 movies->value(i)["genre"].contains(inputValue) ||
-                movies->value(i)["desc"].contains(inputValue);
+                movies->value(i)["desc"].contains(inputValue) )
+                ;
         if(condition){
-            addMovie(movies->value(i));
+            if(searched_genre == "all"){
+                addMovie(movies->value(i));
+                no_movie = false;
+            }
+            else if(movies->value(i)["genre"] == searched_genre){
+                addMovie(movies->value(i));
+                no_movie = false;
+            }
         }
     }
+
+    if(no_movie){
+        QVBoxLayout * upcomingLayouts_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
+        QVBoxLayout * noMoviesLabelLoayout = new QVBoxLayout();
+
+        QLabel * lbl = new QLabel();
+        lbl->setObjectName("no_movie_label");
+        lbl->setStyleSheet(QString("#no_movie_label{color: #182848; font: 20pt B Yekan;}"));
+        QString message = "چنین فیلمی یافت نشد";
+        lbl->setText(message);
+        noMoviesLabelLoayout->addWidget(lbl);
+        upcomingLayouts_Container->insertLayout(0, noMoviesLabelLoayout);
+    }
+
+    searched_input = inputValue;
 }
 
 void Home::on_logoutBtn_clicked()
@@ -327,6 +377,7 @@ void Home::showUsersPage(){
     this->close();
     usersPage->showMaximized();
 }
+
 void Home::showEditUserInfoPage(){
     editUserInfoPage->showMaximized();
     this->close();
