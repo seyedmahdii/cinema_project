@@ -58,9 +58,9 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
 
         newMovie_btn->setObjectName("newMovie_btn");
         newMovie_btn->setStyleSheet(QString(""
-                                 "#newMovie_btn{background-color: #182848; height: 35px; width: 75px; border-radius: 5px; border: 1px solid transparent; color: white; font: 10.5pt B Yekan; cursor: pointing;}"
-                                 "#newMovie_btn:hover{background-color: white; border-color: #182848; color: #182848;}"
-                                 ));
+                                            "#newMovie_btn{background-color: #182848; height: 35px; width: 75px; border-radius: 5px; border: 1px solid transparent; color: white; font: 10.5pt B Yekan; cursor: pointing;}"
+                                            "#newMovie_btn:hover{background-color: white; border-color: #182848; color: #182848;}"
+                                            ));
         QObject::connect(
                     newMovie_btn, &QPushButton::clicked,
                     this, &Home::showNewMoviePage
@@ -74,9 +74,9 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
 
         users_btn->setObjectName("users_btn");
         users_btn->setStyleSheet(QString(""
-                                 "#users_btn{background-color: white; width: 95px; height: 35px; border-radius: 5px; border: 1px solid #182848; color: #182848; font: 10.5pt B Yekan;}"
-                                 "#users_btn:hover{background-color: #182848; color: white; border-color: tranparent;}"
-                                 ));
+                                         "#users_btn{background-color: white; width: 95px; height: 35px; border-radius: 5px; border: 1px solid #182848; color: #182848; font: 10.5pt B Yekan;}"
+                                         "#users_btn:hover{background-color: #182848; color: white; border-color: tranparent;}"
+                                         ));
         QObject::connect(
                     users_btn, &QPushButton::clicked,
                     this, &Home::showUsersPage
@@ -90,7 +90,7 @@ Home::Home(QWidget *parent, QMainWindow * mainWindowPage, QMap<QString, QString>
         info_btn->setStyleSheet(QString(""
                                         "#info_btn{background-color: white; width: 100px; height: 35px; border-radius: 5px; border: 1px solid #182848; color: #182848; font: 10.5pt B Yekan;}"
                                         "#info_btn:hover{background-color: #182848; color: white; border-color: tranparent;}"
-                                 ));
+                                        ));
         QObject::connect(
                     info_btn, &QPushButton::clicked,
                     this, &Home::showEditUserInfoPage
@@ -107,14 +107,39 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
     QVBoxLayout * upcomingLayouts_Container = qobject_cast<QVBoxLayout *>(ui->movies->layout());
 
     QVBoxLayout * newMoviesLoayout = new QVBoxLayout();
+    newMoviesLoayout->setMargin(10);
 
     // Adding "delete" and "edit" btn accessable for admin
     if(loggedUser->value("username") == "admin"){
-        QPushButton * deleteBtn = new QPushButton("Delete");
-        newMoviesLoayout->addWidget(deleteBtn);
+        QHBoxLayout * adminBtntnLoayout = new QHBoxLayout();
 
-        QPushButton * editBtn = new QPushButton("Edit");
-        newMoviesLoayout->addWidget(editBtn);
+        QPushButton * deleteBtn = new QPushButton();
+        deleteBtn->setObjectName("deleteMovie_btn");
+        QIcon * deleteBtn_icon = new QIcon();
+        deleteBtn_icon->addPixmap(QPixmap(":/images/trash-black.png"),QIcon::Normal,QIcon::On);
+        deleteBtn->setIcon(* deleteBtn_icon);
+
+        QPushButton * editBtn = new QPushButton();
+        editBtn->setObjectName("editMovie_btn");
+        QIcon * editBtn_icon = new QIcon();
+        editBtn_icon->addPixmap(QPixmap(":/images/edit-black.png"),QIcon::Normal,QIcon::On);
+        editBtn->setIcon(* editBtn_icon);
+
+        QSpacerItem *spacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        adminBtntnLoayout->addSpacerItem(spacer);
+
+        adminBtntnLoayout->addWidget(deleteBtn);
+        adminBtntnLoayout->addWidget(editBtn);
+        newMoviesLoayout->addLayout(adminBtntnLoayout);
+
+        deleteBtn->setStyleSheet(QString(""
+                                         "#deleteMovie_btn{background-color: transparent; border: 1px solid #182848; width: 32px; height: 32px; border-radius: 7px;}"
+                                         )
+                                 );
+        editBtn->setStyleSheet(QString(""
+                                         "#editMovie_btn{background-color: transparent; border: 1px solid #182848; width: 32px; height: 32px; border-radius: 7px;}"
+                                         )
+                                 );
 
         buttonToLayout.insert(deleteBtn, newMoviesLoayout);
         buttonToMovie.insert(deleteBtn, singleMovie["name"]);
@@ -131,40 +156,77 @@ void Home::addMovie(QMap<QString, QString> singleMovie){
                     );
     }
 
+    QHBoxLayout * ticketLoayout = new QHBoxLayout();
     // Spingbox and button for buying ticket
     QSpinBox * ticketInput = new QSpinBox();
+    ticketInput->setObjectName("ticektInput_btn");
+    ticketInput->setStyleSheet(QString(""
+                                       "#ticektInput_btn{height: 32px; border: 1px solid #d6d6d6; background-color: ; color: #182848; border-radius: 6px; font: 14pt B Yekan;}"
+                                       ));
     ticketInput->setMinimum(1);
-    newMoviesLoayout->addWidget(ticketInput);
-    QPushButton * ticketBtn = new QPushButton("Buy ticket");
+    ticketLoayout->addWidget(ticketInput);
+
+    QPushButton * ticketBtn = new QPushButton("خرید بلیط");
+    ticketBtn->setObjectName("ticket_btn");
+    ticketBtn->setStyleSheet(QString(""
+                                     "#ticket_btn{background-color: white; color: #182848; border: 1px solid #d6d6d6; width: 32px; height: 32px; border-radius: 7px; font: 14pt B Yekan;}"
+                                     "#ticket_btn:hover{background-color: #182848; color: white;}"
+                                     )
+                             );
     if(singleMovie["tickets"] == "0"){
         ticketBtn->setEnabled(false);
     }
     else{
         ticketBtn->setEnabled(true);
     }
-    newMoviesLoayout->addWidget(ticketBtn);
+    ticketLoayout->addWidget(ticketBtn);
 
-    QLabel * movieLabel = new QLabel(singleMovie["name"]);
+    QLabel * movieLabel = new QLabel("Name: " + singleMovie["name"]);
+    movieLabel->setObjectName("movieName_label");
+    movieLabel->setStyleSheet(QString(""
+                                      "#movieName_label{font: 11pt B Yekan; color: #182848;}"
+                                      ));
     newMoviesLoayout->addWidget(movieLabel);
 
-    QLabel * directorLabel = new QLabel(singleMovie["director"]);
+    QLabel * directorLabel = new QLabel("Director: " + singleMovie["director"]);
+    directorLabel->setObjectName("movieDirector_label");
+    directorLabel->setStyleSheet(QString(""
+                                      "#movieDirector_label{font: 11pt B Yekan; color: #182848;}"
+                                      ));
     newMoviesLoayout->addWidget(directorLabel);
 
-    QLabel * castLabel = new QLabel(singleMovie["cast"]);
+    QLabel * castLabel = new QLabel("Cast: " + singleMovie["cast"]);
+    castLabel->setObjectName("movieCast_label");
+    castLabel->setStyleSheet(QString(""
+                                      "#movieCast_label{font: 11pt B Yekan; color: #182848;}"
+                                      ));
     newMoviesLoayout->addWidget(castLabel);
 
-    QLabel * genreLabel = new QLabel(singleMovie["genre"]);
+    QLabel * genreLabel = new QLabel("Genre: " + singleMovie["genre"]);
+    genreLabel->setObjectName("movieGenre_label");
+    genreLabel->setStyleSheet(QString(""
+                                      "#movieGenre_label{font: 11pt B Yekan; color: #182848;}"
+                                      ));
     newMoviesLoayout->addWidget(genreLabel);
 
-    QLabel * descLabel = new QLabel(singleMovie["desc"]);
+    QLabel * descLabel = new QLabel("Description: " + singleMovie["desc"]);
+    descLabel->setObjectName("movieDesc_label");
+    descLabel->setStyleSheet(QString(""
+                                      "#movieDesc_label{font: 11pt B Yekan; color: #182848;}"
+                                      ));
     newMoviesLoayout->addWidget(descLabel);
 
-    QLabel * ticketsLabel = new QLabel(singleMovie["tickets"]);
+    QLabel * ticketsLabel = new QLabel("Available Tickets: " + singleMovie["tickets"]);
+    ticketsLabel->setObjectName("movieTickets_label");
+    ticketsLabel->setStyleSheet(QString(""
+                                      "#movieTickets_label{font: 11pt B Yekan; color: #182848;}"
+                                      ));
     newMoviesLoayout->addWidget(ticketsLabel);
     buttonToMovieTicketLabel.insert(ticketBtn, ticketsLabel);
 
-    upcomingLayouts_Container->insertLayout(2, newMoviesLoayout);
+    newMoviesLoayout->addLayout(ticketLoayout);
 
+    upcomingLayouts_Container->insertLayout(2, newMoviesLoayout);
 
     buttonToMovieTicket.insert(ticketBtn, singleMovie["name"]);
     buttonToTicketInput.insert(ticketBtn, ticketInput);
@@ -197,9 +259,9 @@ void Home::closeEvent(QCloseEvent *){
 
     for(int i=0; i<movies->length(); i++){
         qts << movies->value(i)["name"] << "\n" << movies->value(i)["director"] << "\n"
-                                 << movies->value(i)["cast"] << "\n" << movies->value(i)["genre"]
-                                 << "\n" << movies->value(i)["desc"] << "\n" << movies->value(i)["tickets"]
-                                 << "\n";
+                                        << movies->value(i)["cast"] << "\n" << movies->value(i)["genre"]
+                                        << "\n" << movies->value(i)["desc"] << "\n" << movies->value(i)["tickets"]
+                                        << "\n";
     }
     moviesFile.close();
 }
