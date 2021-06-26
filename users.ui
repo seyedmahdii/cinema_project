@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>مدیریت کاربران</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/images/logo.svg</normaloff>:/images/logo.svg</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">#header_wrapper, #back_btn_wrapper{
 	background-color: white;
