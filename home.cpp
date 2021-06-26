@@ -322,7 +322,7 @@ void Home::onBuyTicket(){
                 availableTicket -= inputTicket;
                 QString sTicket = QString::number(availableTicket);
                 (*movies)[i]["tickets"] = sTicket;
-                ticketLabel->setText(sTicket);
+                ticketLabel->setText("Available Tickets: " + sTicket);
                 if(availableTicket == 0){
                     button->setEnabled(false);
                 }

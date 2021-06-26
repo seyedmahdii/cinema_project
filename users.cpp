@@ -34,6 +34,7 @@ void Users::showEvent(QShowEvent *){
     QFile file("users.txt");
     file.open(QFile::Text | QFile::ReadOnly);
     QTextStream qts(&file);
+    users->clear();
     while(!qts.atEnd()){
         QStringList qsl = qts.readLine().split(" ");
         QMap<QString, QString> tmap;
@@ -44,6 +45,7 @@ void Users::showEvent(QShowEvent *){
     }
     file.close();
 
+    // Filling table
     int rowsNum = users->length();
     int colsNum = 4;
     ui->users_table->clear();
@@ -92,6 +94,10 @@ void Users::showEvent(QShowEvent *){
         }
     }
 
+    this->ui->users_table->setHorizontalHeaderItem(0, new QTableWidgetItem("Username"));
+    this->ui->users_table->setHorizontalHeaderItem(1, new QTableWidgetItem("Password"));
+    this->ui->users_table->setHorizontalHeaderItem(2, new QTableWidgetItem("E-mail"));
+    this->ui->users_table->setHorizontalHeaderItem(3, new QTableWidgetItem("Actions"));
 }
 
 void Users::onRemoveUser(){
